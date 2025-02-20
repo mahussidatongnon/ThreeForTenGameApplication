@@ -1,4 +1,4 @@
-package com.miageia2.ThreeForTengame.controllers
+package com.miageia2.threeForTengame.controller
 
 import com.fasterxml.jackson.databind.json.JsonMapper
 import org.springframework.http.MediaType

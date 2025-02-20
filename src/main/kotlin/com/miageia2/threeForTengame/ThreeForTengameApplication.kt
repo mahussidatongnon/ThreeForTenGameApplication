@@ -1,4 +1,4 @@
-package com.miageia2.ThreeForTengame
+package com.miageia2.threeForTengame
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

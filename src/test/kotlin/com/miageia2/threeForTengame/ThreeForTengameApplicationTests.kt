@@ -1,4 +1,4 @@
-package com.miageia2.ThreeForTengame
+package com.miageia2.threeForTengame
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
