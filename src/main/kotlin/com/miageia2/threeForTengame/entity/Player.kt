@@ -9,13 +9,13 @@ import org.springframework.data.mongodb.core.mapping.Document
 @Builder
 @Data
 @Document(collection = "players")
-class Player {
+data class Player  (
     @Id
-    private val id: String? = null
+    val id: String? = null,
 
     @Indexed(unique = true)
-    private val username: String? = null // Unique dans la base de données
+    val username: String? = null, // Unique dans la base de données
 
-    private val gamesPlayed = 0
-    private val gamesWon = 0
-}
+    val gamesPlayed: Int = 0,
+    val gamesWon: Int = 0
+)

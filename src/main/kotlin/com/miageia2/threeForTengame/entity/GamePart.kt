@@ -9,15 +9,15 @@ import java.time.Instant
 @Builder
 @Data
 @Document(collection = "game_parts")
-class GamePart {
+data class GamePart(
     @Id
-    private val id: String? = null
-    private val player1Id: String? = null // Référence vers Player
-    private val player2Id: String? = null // Référence vers Player
-    private val gameStateId: String? = null
-    private val status: String? = null // "waiting", "in_progress", "finished"
-    private val winnerId: String? = null // Référence vers Player si gagnant
-    private val history: List<String>? = null
-    private val createdAt: Instant? = null
-    private val updatedAt: Instant? = null
-}
+    val id: String? = null,
+    val player1Id: String? = null,// Référence vers Player
+    val player2Id: String? = null, // Référence vers Player
+    val gameStateId: String? = null,
+    val status: String? = null, // "waiting", "in_progress", "finished"
+    val winnerId: String? = null, // Référence vers Player si gagnant
+    val history: List<String>? = null,
+    val createdAt: Instant? = null,
+    val updatedAt: Instant? = null,
+)

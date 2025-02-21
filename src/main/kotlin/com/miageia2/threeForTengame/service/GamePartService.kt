@@ -16,12 +16,13 @@ class GamePartService(val gamePartRepository: GamePartRepository, val playerRepo
         val player2 = playerRepository.findByUsername(player2Username)
             ?.orElseThrow { RuntimeException("Player not found: $player2Username") }!!
 
-        val game = GamePart()
-        game.setPlayer1Id(player1.getId())
-        game.setPlayer2Id(player2.getId())
-        game.setStatus("waiting")
-        game.setCreatedAt(Instant.now())
-        game.setUpdatedAt(Instant.now())
+        val game = GamePart(
+            player1Id = player1.id,
+            player2Id = player2.id,
+            status = "waiting",
+            createdAt = Instant.now(),
+            updatedAt = Instant.now()
+        )
 
         return gamePartRepository.save(game)
     }

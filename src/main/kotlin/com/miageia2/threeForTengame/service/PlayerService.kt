@@ -12,10 +12,7 @@ class PlayerService(private val playerRepository: PlayerRepository) {
         if (playerRepository.findByUsername(username)!!.isPresent) {
             throw RuntimeException("Username already taken: $username")
         }
-        val player = Player()
-        player.setUsername(username)
-        player.setGamesPlayed(0)
-        player.setGamesWon(0)
+        val player = Player(username=username)
         return playerRepository.save(player)
     }
 
