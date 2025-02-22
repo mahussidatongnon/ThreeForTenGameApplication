@@ -1,6 +1,5 @@
 package com.miageia2.threeForTengame.entity
 
-import lombok.Builder
 import lombok.Data
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
@@ -19,4 +18,6 @@ data class GamePart(
     var history: List<String>? = null,
     var createdAt: Instant? = null,
     var updatedAt: Instant? = null,
+    val secretCode: String? = null,
+    val nbCasesCote: Int = 7
 )

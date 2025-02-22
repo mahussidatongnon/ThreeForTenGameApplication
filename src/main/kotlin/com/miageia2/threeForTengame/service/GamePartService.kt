@@ -1,6 +1,8 @@
 package com.miageia2.threeForTengame.service
 
 
+import com.miageia2.threeForTengame.dto.GamePartCreateDTO
+import com.miageia2.threeForTengame.dto.GamePartJoinDTO
 import com.miageia2.threeForTengame.entity.GamePart
 import com.miageia2.threeForTengame.repository.GamePartRepository
 import com.miageia2.threeForTengame.repository.PlayerRepository
@@ -10,20 +12,73 @@ import java.time.Instant
 @Service
 class GamePartService(val gamePartRepository: GamePartRepository, val playerRepository: PlayerRepository) {
 
-    fun createGame(player1Username: String, player2Username: String): GamePart {
-        val player1 = playerRepository.findByUsername(player1Username)
-            ?.orElseThrow { RuntimeException("Player not found: $player1Username") }!!
-        val player2 = playerRepository.findByUsername(player2Username)
-            ?.orElseThrow { RuntimeException("Player not found: $player2Username") }!!
+    fun createGame(gamePartCreateDTO: GamePartCreateDTO): GamePart {
+        val player1 = playerRepository.findByUsername(gamePartCreateDTO.player1Username)
+            .orElseThrow { RuntimeException("Player not found: ${gamePartCreateDTO.player1Username}") }!!
+        val player2 = playerRepository.findByUsername(gamePartCreateDTO.player2Username)
+
+        if ( (2 > gamePartCreateDTO.nbCasesCote) or ( gamePartCreateDTO.nbCasesCote > 7) )
+            throw RuntimeException("nbCasesCote must be between 2 and 7")
 
         val game = GamePart(
             player1Id = player1.id,
-            player2Id = player2.id,
+            player2Id = if (player2.isEmpty) {
+                null
+            } else {
+                player2.get().id
+            },
             status = "waiting",
+            secretCode = gamePartCreateDTO.secretCode,
             createdAt = Instant.now(),
-            updatedAt = Instant.now()
+            updatedAt = Instant.now(),
+            nbCasesCote = gamePartCreateDTO.nbCasesCote,
+
         )
 
         return gamePartRepository.save(game)
+    }
+
+    fun joinGame(gamePartJoinDTO: GamePartJoinDTO): GamePart {
+        val gamePart = gamePartRepository.findById(gamePartJoinDTO.gameId)
+            .orElseThrow { RuntimeException("Game not found: ${gamePartJoinDTO.gameId}") }!!
+        val player2 = playerRepository.findByUsername(gamePartJoinDTO.playerUsername)
+            .orElseThrow { RuntimeException("Player not found: ${gamePartJoinDTO.playerUsername}") }!!
+
+        if (gamePart.status != "waiting")
+            throw RuntimeException("Game must be waiting for joining. Status: '${gamePart.status}'")
+
+        if (!gamePart.player2Id.isNullOrEmpty())
+            throw RuntimeException("Player 2 ID already exists.")
+
+        if (gamePart.player1Id.equals(player2.id))
+            throw RuntimeException("You can't play against yourself.")
+
+        if (!gamePart.secretCode.equals(gamePartJoinDTO.secretCode))
+            throw RuntimeException("Secret code is not correct.")
+
+        gamePart.player2Id = player2.id
+        return gamePartRepository.save(gamePart)
+    }
+
+    fun findById(gameId: String): GamePart {
+        return gamePartRepository.findById(gameId).orElseThrow { RuntimeException("Game not found: ${gameId}") }!!
+    }
+
+    fun findAll(): List<GamePart?> {
+        val gameParts = gamePartRepository.findAll()
+        return gameParts.toList()
+    }
+
+    fun startGame(gameId: String): GamePart {
+        val gamePart =
+            gamePartRepository.findById(gameId).orElseThrow { RuntimeException("Game not found: ${gameId}") }!!
+        if (gamePart.status != "waiting")
+            throw RuntimeException("Game must be waiting for starting. Status: '${gameId}'")
+        if (gamePart.player2Id.isNullOrBlank())
+            throw RuntimeException("Player 2 is missing!")
+
+        gamePart.status = "started"
+        // Create GameState with dimension
+        return gamePartRepository.save(gamePart)
     }
 }

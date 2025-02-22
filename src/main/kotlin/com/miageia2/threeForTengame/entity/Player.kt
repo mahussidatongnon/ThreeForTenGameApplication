@@ -1,6 +1,5 @@
 package com.miageia2.threeForTengame.entity
 
-import lombok.Builder
 import lombok.Data
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.index.Indexed
@@ -13,8 +12,9 @@ data class Player  (
     val id: String? = null,
 
     @Indexed(unique = true)
-    val username: String? = null, // Unique dans la base de données
+    val username: String, // Unique dans la base de données
+    val password: String? = null,
 
-    val gamesPlayed: Int = 0,
-    val gamesWon: Int = 0
+    var gamesPlayed: Int = 0,
+    var gamesWon: Int = 0
 )
