@@ -1,9 +1,11 @@
 package com.miageia2.threeForTengame.entity
 
+import com.miageia2.threeForTengame.entity.utils.GamePartStatus
 import lombok.Data
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.Instant
+
 
 @Data
 @Document(collection = "game_parts")
@@ -13,7 +15,7 @@ data class GamePart(
     var player1Id: String? = null,// Référence vers Player
     var player2Id: String? = null, // Référence vers Player
     var gameStateId: String? = null,
-    var status: String? = null, // "waiting", "in_progress", "finished"
+    var status: GamePartStatus = GamePartStatus.WAITING, // "waiting", "in_progress", "finished"
     var winnerId: String? = null, // Référence vers Player si gagnant
     var history: List<String>? = null,
     var createdAt: Instant? = null,

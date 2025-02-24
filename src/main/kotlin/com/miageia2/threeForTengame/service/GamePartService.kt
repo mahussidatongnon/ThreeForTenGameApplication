@@ -4,13 +4,21 @@ package com.miageia2.threeForTengame.service
 import com.miageia2.threeForTengame.dto.GamePartCreateDTO
 import com.miageia2.threeForTengame.dto.GamePartJoinDTO
 import com.miageia2.threeForTengame.entity.GamePart
+import com.miageia2.threeForTengame.entity.GameState
+import com.miageia2.threeForTengame.entity.utils.GamePartStatus
+import com.miageia2.threeForTengame.entity.utils.GamePointDetail
 import com.miageia2.threeForTengame.repository.GamePartRepository
+import com.miageia2.threeForTengame.repository.GameStateRepository
 import com.miageia2.threeForTengame.repository.PlayerRepository
 import org.springframework.stereotype.Service
 import java.time.Instant
 
 @Service
-class GamePartService(val gamePartRepository: GamePartRepository, val playerRepository: PlayerRepository) {
+class GamePartService(
+    private val gamePartRepository: GamePartRepository,
+    private val playerRepository: PlayerRepository,
+    private val gameStateRepository: GameStateRepository
+) {
 
     fun createGame(gamePartCreateDTO: GamePartCreateDTO): GamePart {
         val player1 = playerRepository.findByUsername(gamePartCreateDTO.player1Username)
@@ -22,29 +30,22 @@ class GamePartService(val gamePartRepository: GamePartRepository, val playerRepo
 
         val game = GamePart(
             player1Id = player1.id,
-            player2Id = if (player2.isEmpty) {
-                null
-            } else {
-                player2.get().id
-            },
-            status = "waiting",
+            player2Id = if (player2.isEmpty) {null} else {player2.get().id},
+            status = GamePartStatus.WAITING,
             secretCode = gamePartCreateDTO.secretCode,
             createdAt = Instant.now(),
             updatedAt = Instant.now(),
             nbCasesCote = gamePartCreateDTO.nbCasesCote,
-
         )
 
         return gamePartRepository.save(game)
     }
 
-    fun joinGame(gamePartJoinDTO: GamePartJoinDTO): GamePart {
-        val gamePart = gamePartRepository.findById(gamePartJoinDTO.gameId)
-            .orElseThrow { RuntimeException("Game not found: ${gamePartJoinDTO.gameId}") }!!
+    fun joinGame(gamePart: GamePart, gamePartJoinDTO: GamePartJoinDTO): GamePart {
         val player2 = playerRepository.findByUsername(gamePartJoinDTO.playerUsername)
             .orElseThrow { RuntimeException("Player not found: ${gamePartJoinDTO.playerUsername}") }!!
 
-        if (gamePart.status != "waiting")
+        if (gamePart.status != GamePartStatus.WAITING)
             throw RuntimeException("Game must be waiting for joining. Status: '${gamePart.status}'")
 
         if (!gamePart.player2Id.isNullOrEmpty())
@@ -72,12 +73,28 @@ class GamePartService(val gamePartRepository: GamePartRepository, val playerRepo
     fun startGame(gameId: String): GamePart {
         val gamePart =
             gamePartRepository.findById(gameId).orElseThrow { RuntimeException("Game not found: ${gameId}") }!!
-        if (gamePart.status != "waiting")
+        if (gamePart.status != GamePartStatus.WAITING)
             throw RuntimeException("Game must be waiting for starting. Status: '${gameId}'")
         if (gamePart.player2Id.isNullOrBlank())
             throw RuntimeException("Player 2 is missing!")
 
-        gamePart.status = "started"
+
+        var gameState = GameState(
+            gamePartId = gamePart.id,
+            turn = 0,
+            currentPlayerId = gamePart.player1Id,
+            boardState = Array(gamePart.nbCasesCote) {
+                arrayOfNulls<GamePointDetail?>(gamePart.nbCasesCote)
+            },
+            createdAt = Instant.now(),
+            updatedAt = Instant.now(),
+        )
+
+        gameState = gameStateRepository.save(gameState)
+
+        gamePart.gameStateId = gameState.id
+        gamePart.status = GamePartStatus.STARTED
+
         // Create GameState with dimension
         return gamePartRepository.save(gamePart)
     }
