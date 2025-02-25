@@ -6,5 +6,6 @@ data class PointDTO(
 )
 data class PlayGameDTO(
     val coordinates: PointDTO,
+    val coinValue: Int,
     val playerUsername: String
 )

@@ -1,200 +1,184 @@
 package com.miageia2.threeForTengame.service
 
 import com.miageia2.threeForTengame.dto.PointDTO
-import com.miageia2.threeForTengame.entity.GamePart
-import com.miageia2.threeForTengame.entity.GameState
-import com.miageia2.threeForTengame.entity.Player
-import com.miageia2.threeForTengame.entity.Point
-import com.miageia2.threeForTengame.entity.utils.GamePointDetail
-import com.miageia2.threeForTengame.entity.utils.WinningCase
+import com.miageia2.threeForTengame.entity.*
+import com.miageia2.threeForTengame.entity.utils.BoardCell
+import com.miageia2.threeForTengame.entity.utils.WinningDirection
+import com.miageia2.threeForTengame.repository.GamePartRepository
 import com.miageia2.threeForTengame.repository.GameStateRepository
-import com.miageia2.threeForTengame.service.utils.WinnablePoint
 import org.springframework.stereotype.Service
+import java.time.Instant
+import java.util.EnumMap
 
 @Service
-class GameStateService(val gameStateRepository: GameStateRepository) {
+class GameStateService(
+    private val gameStateRepository: GameStateRepository,
+    private val gamePartRepository: GamePartRepository
+) {
 
-    fun play(gamePart: GamePart, player: Player, coordinates: PointDTO): GameState {
-        val gameState = gameStateRepository.findById(gamePart.gameStateId!!).
-            orElseThrow { IllegalArgumentException("GameState not found") }!!
-
-
-        if (!isValidCoordinates(gameState.boardState!!, coordinates))
-            throw IllegalArgumentException("Coordinate not valid")
-
-        // check rules etc ...
-        return gameState
-    }
 
     fun findById(gameStateId: String): GameState {
         return gameStateRepository.findById(gameStateId).
         orElseThrow { IllegalArgumentException("GameState not found with id: $gameStateId") }!!
     }
 
-    fun isValidCoordinates(boardState: Array<Array<GamePointDetail?>>, coordinates: PointDTO): Boolean {
-        return boardState[coordinates.x][coordinates.y] != null
+    fun isInsideBoard(point: PointDTO, gameState: GameState): Boolean {
+        val size = gameState.boardState!!.size
+        return point.x in 0 until size && point.y in 0 until size
     }
 
-    fun applyCoordinates(gameState: GameState, coordinates: PointDTO, player: Player) {
-//      set a coin to coordinate by player
-        assert( isValidCoordinates(gameState.boardState!!, coordinates)) { "Coordinate not valid" }
-//        val winnablePoints: List<WinnablePoint> = this.getWinnablePoints(
-//            gameState.boardState!!, coordinates, player)
+
+    fun play(gamePart: GamePart, player: Player, coordinates: PointDTO, coinValue: Int): GameState {
+        val gameState: GameState = gameStateRepository.findById(gamePart.gameStateId!!)
+            .orElseThrow { IllegalArgumentException("GameState not found") }!!
+
+        assert(gameState.boardState!![coordinates.x][coordinates.y] == null) { "Coordinate not valid" }
+
+        // Placer le chiffre joué sur le plateau
+        gameState.boardState!![coordinates.x][coordinates.y] = BoardCell(coinValue)
+
+        // Vérifier les groupes de 3 cases totalisant 10
+        val (pointsGagnes, wonPoints) = countWinningGroups(gameState, coordinates, player)
+
+
+        gameState.apply {
+            turn ++
+            currentPlayerId = if(player.id == gamePart.player1Id) gamePart.player2Id else gamePart.player1Id
+            updatedAt = Instant.now()
+            lastMove = PlayerTurn(
+                point = Point(coordinates.x, coordinates.y, player.id),
+                value = coinValue,
+                wonPoints = wonPoints
+            )
+        }
+
+        // Mise à jour du score du joueur en s'assurant qu'il existe déjà dans la HashMap
+        gamePart.scores[player.id!!] = gamePart.scores.getOrDefault(player.id, 0) + pointsGagnes
+        gamePartRepository.save(gamePart)
+
+        return gameStateRepository.save(gameState)
     }
 
-    fun isWinnableCase(point1: PointDTO, point2: PointDTO, winningCase: WinningCase, nbCasesCote: Int, player: Player,
-                       gamePointDetail1: GamePointDetail?, gamePointDetail2: GamePointDetail?): Boolean {
-        if (point2.x > nbCasesCote || point2.y > nbCasesCote)
-            return false
-//      winningCase is possible
+    fun countWinningGroups(gameState: GameState, coordinates: PointDTO, player: Player): Pair<Int,
+            EnumMap<WinningDirection, MutableSet<Point>>> {
+        val directions = listOf(
+            Pair(1, 0) to WinningDirection.HORIZONTAL,
+            Pair(0, 1) to WinningDirection.VERTICAL,
+            Pair(1, 1) to WinningDirection.DOWN_DIAGONAL,
+            Pair(1, -1) to WinningDirection.UP_DIAGONAL
+        )
 
+        var totalPoints = 0
+        val wonPoints: EnumMap<WinningDirection, MutableSet<Point>> = EnumMap<WinningDirection, MutableSet<Point>>(
+            mutableMapOf<WinningDirection, MutableSet<Point>>().apply {
+                WinningDirection.entries.forEach { this[it] = mutableSetOf() }
+            }
+        )
 
-        if (gamePointDetail1 == null || gamePointDetail2 == null)
-            return false
+        for ((directionPair, direction) in directions) {
+            val (dx, dy) = directionPair
 
-//      upDiagonal point exists
-        if (gamePointDetail1.playerId != player.id || gamePointDetail2.playerId != player.id)
-            return false
-//
-//      The pointDetail belongs to players
-        if ((winningCase in gamePointDetail1.winningCases) || (winningCase in gamePointDetail2.winningCases))
-            return false
+            // Vérifie toutes les configurations possibles
+            if (isWinningGroup(gameState, coordinates, dx, dy, player, direction)) {
+                totalPoints++
+                gameState.boardState!![coordinates.x][coordinates.y]?.wonCasesDirections?.add(direction)
+                wonPoints[direction]?.addAll(
+                    setOf(
+                        Point(coordinates.x, coordinates.y, player.id),
+                        Point(coordinates.x + dx, coordinates.y + dy, player.id),
+                        Point(coordinates.x + 2 * dx, coordinates.y + 2 *  dy, player.id)
+                    )
+                )
+            }
+            if (isWinningGroup(gameState, coordinates, -dx, -dy, player, direction)) {
+                totalPoints++
+                gameState.boardState!![coordinates.x][coordinates.y]?.wonCasesDirections?.add(direction)
+                wonPoints[direction]?.addAll(
+                    setOf(
+                        Point(coordinates.x, coordinates.y, player.id),
+                        Point(coordinates.x - dx, coordinates.y - dy, player.id),
+                        Point(coordinates.x - 2 * dx, coordinates.y - 2 *  dy, player.id)
+                    )
+                )
+            }
+            if (isWinningGroupMiddle(gameState, coordinates, dx, dy, player, direction)) {
+                totalPoints++
+                gameState.boardState!![coordinates.x][coordinates.y]?.wonCasesDirections?.add(direction)
+                wonPoints[direction]?.addAll(
+                    setOf(
+                            Point(coordinates.x, coordinates.y, player.id),
+                            Point(coordinates.x - dx, coordinates.y - dy, player.id),
+                            Point(coordinates.x + dx, coordinates.y + dy, player.id)
+                    )
+                )
+            }
+        }
 
-//      The winning is available for both points
-        return true
+        return totalPoints to wonPoints
     }
 
-    fun getWinnablePoints(boardState: Array<Array<GamePointDetail?>>, coordinates: PointDTO, player: Player ) : List<WinnablePoint> {
-        val nbCasesCote = boardState.size
-        val winnablePoints: MutableList<WinnablePoint> = mutableListOf()
-        // Chaque case peut être utilisée quatre fois au plus pour faire un point : horizontalement, verticalement,
-        // en diagonale montante et en diagonale descendante. Elle ne peut pas être utilisée deux fois dans
-        // la même direction !
-//        var has_up_diagonal = false
-//        var has_down_diagonal = false
-//        var has_vertical = false
-//        var has_horizontal = false
-        if (isWinnableCase(
-            point1 = PointDTO(coordinates.x + 1, coordinates.y + 1),
-            point2 = PointDTO(coordinates.x + 2, coordinates.y + 2),
-            winningCase = WinningCase.UP_RIGHT_DIAGONAL,
-            nbCasesCote = nbCasesCote,
-            player = player,
-            gamePointDetail1 = boardState[coordinates.x + 1][coordinates.y + 1],
-            gamePointDetail2 = boardState[coordinates.x + 2][coordinates.y + 2],
-        ))
-            winnablePoints.add(WinnablePoint(
-                Point(coordinates.x + 1, coordinates.y + 1, player.id),
-                Point(coordinates.x + 2, coordinates.y + 2, player.id),
-                WinningCase.UP_RIGHT_DIAGONAL,
-            ))
+    fun isWinningGroup(
+        gameState: GameState,
+        coordinates: PointDTO,
+        dx: Int,
+        dy: Int,
+        player: Player,
+        direction: WinningDirection
+    ): Boolean {
+        val board = gameState.boardState!!
 
-        if (isWinnableCase(
-                point1 = PointDTO(coordinates.x + 1, coordinates.y - 1),
-                point2 = PointDTO(coordinates.x + 2, coordinates.y - 2),
-                winningCase = WinningCase.DOWN_RIGHT_DIAGONAL,
-                nbCasesCote = nbCasesCote,
-                player = player,
-                gamePointDetail1 = boardState[coordinates.x + 1][coordinates.y - 1],
-                gamePointDetail2 = boardState[coordinates.x + 2][coordinates.y - 2],
-            ))
-            winnablePoints.add(WinnablePoint(
-                Point(coordinates.x + 1, coordinates.y - 1, player.id),
-                Point(coordinates.x + 2, coordinates.y - 2, player.id),
-                WinningCase.UP_RIGHT_DIAGONAL,
-            ))
+        val x = coordinates.x
+        val y = coordinates.y
 
-        if (isWinnableCase(
-                point1 = PointDTO(coordinates.x - 1, coordinates.y + 1),
-                point2 = PointDTO(coordinates.x - 2, coordinates.y + 2),
-                winningCase = WinningCase.UP_LEFT_DIAGONAL,
-                nbCasesCote = nbCasesCote,
-                player = player,
-                gamePointDetail1 = boardState[coordinates.x - 1][coordinates.y + 1],
-                gamePointDetail2 = boardState[coordinates.x - 2][coordinates.y + 2],
-            ))
-            winnablePoints.add(WinnablePoint(
-                Point(coordinates.x - 1, coordinates.y + 1, player.id),
-                Point(coordinates.x - 2, coordinates.y + 2, player.id),
-                WinningCase.UP_LEFT_DIAGONAL,
-            ))
+        // Vérifie si cette case a déjà été utilisée dans cette direction
+        val currentCell = board[x][y] ?: return false
+        if (direction in currentCell.wonCasesDirections) {
+            return false // On ne peut pas réutiliser cette case dans la même direction
+        }
 
-        if (isWinnableCase(
-                point1 = PointDTO(coordinates.x - 1, coordinates.y - 1),
-                point2 = PointDTO(coordinates.x - 2, coordinates.y - 2),
-                winningCase = WinningCase.DOWN_LEFT_DIAGONAL,
-                nbCasesCote = nbCasesCote,
-                player = player,
-                gamePointDetail1 = boardState[coordinates.x - 1][coordinates.y - 1],
-                gamePointDetail2 = boardState[coordinates.x - 2][coordinates.y - 2],
-            ))
-            winnablePoints.add(WinnablePoint(
-                Point(coordinates.x - 1, coordinates.y - 1, player.id),
-                Point(coordinates.x - 2, coordinates.y - 2, player.id),
-                WinningCase.DOWN_LEFT_DIAGONAL,
-            ))
+        val point1 = PointDTO(x + dx, y + dy)
+        val point2 = PointDTO(x + 2 * dx, y + 2 * dy)
 
-        if (isWinnableCase(
-                point1 = PointDTO(coordinates.x, coordinates.y + 1),
-                point2 = PointDTO(coordinates.x, coordinates.y + 2),
-                winningCase = WinningCase.UP_VERTICAL,
-                nbCasesCote = nbCasesCote,
-                player = player,
-                gamePointDetail1 = boardState[coordinates.x][coordinates.y + 1],
-                gamePointDetail2 = boardState[coordinates.x][coordinates.y + 2],
-            ))
-            winnablePoints.add(WinnablePoint(
-                Point(coordinates.x, coordinates.y + 1, player.id),
-                Point(coordinates.x, coordinates.y + 2, player.id),
-                WinningCase.UP_VERTICAL,
-            ))
+        if (!isInsideBoard(point1, gameState) || !isInsideBoard(point2, gameState)) {
+            return false
+        }
 
-        if (isWinnableCase(
-                point1 = PointDTO(coordinates.x, coordinates.y - 1),
-                point2 = PointDTO(coordinates.x, coordinates.y - 2),
-                winningCase = WinningCase.DOWN_VERTICAL,
-                nbCasesCote = nbCasesCote,
-                player = player,
-                gamePointDetail1 = boardState[coordinates.x][coordinates.y - 1],
-                gamePointDetail2 = boardState[coordinates.x][coordinates.y - 2],
-            ))
-            winnablePoints.add(WinnablePoint(
-                Point(coordinates.x, coordinates.y - 1, player.id),
-                Point(coordinates.x, coordinates.y - 2, player.id),
-                WinningCase.DOWN_VERTICAL,
-            ))
+        val cell1 = board[point1.x][point1.y] ?: return false
+        val cell2 = board[point2.x][point2.y] ?: return false
 
-        if (isWinnableCase(
-                point1 = PointDTO(coordinates.x - 1, coordinates.y),
-                point2 = PointDTO(coordinates.x - 2, coordinates.y),
-                winningCase = WinningCase.LEFT_HORIZONTAL,
-                nbCasesCote = nbCasesCote,
-                player = player,
-                gamePointDetail1 = boardState[coordinates.x - 1][coordinates.y],
-                gamePointDetail2 = boardState[coordinates.x - 2][coordinates.y],
-            ))
-            winnablePoints.add(WinnablePoint(
-                Point(coordinates.x - 1, coordinates.y, player.id),
-                Point(coordinates.x - 2, coordinates.y, player.id),
-                WinningCase.LEFT_HORIZONTAL,
-            ))
-
-        if (isWinnableCase(
-                point1 = PointDTO(coordinates.x + 1, coordinates.y),
-                point2 = PointDTO(coordinates.x + 2, coordinates.y),
-                winningCase = WinningCase.RIGHT_HORIZONTAL,
-                nbCasesCote = nbCasesCote,
-                player = player,
-                gamePointDetail1 = boardState[coordinates.x + 1][coordinates.y],
-                gamePointDetail2 = boardState[coordinates.x + 2][coordinates.y],
-            ))
-            winnablePoints.add(WinnablePoint(
-                Point(coordinates.x + 1, coordinates.y, player.id),
-                Point(coordinates.x + 2, coordinates.y, player.id),
-                WinningCase.RIGHT_HORIZONTAL,
-            ))
-
-        return winnablePoints.toList()
+        return (currentCell.value + cell1.value + cell2.value == 10)
     }
+
+    fun isWinningGroupMiddle(
+        gameState: GameState,
+        coordinates: PointDTO,
+        dx: Int,
+        dy: Int,
+        player: Player,
+        direction: WinningDirection
+    ): Boolean {
+        val board = gameState.boardState!!
+
+        val x = coordinates.x
+        val y = coordinates.y
+
+        val currentCell = board[x][y] ?: return false
+        if (direction in currentCell.wonCasesDirections) {
+            return false // Déjà utilisée dans cette direction
+        }
+
+        val point1 = PointDTO(x - dx, y - dy)
+        val point2 = PointDTO(x + dx, y + dy)
+
+        if (!isInsideBoard(point1, gameState) || !isInsideBoard(point2, gameState)) {
+            return false
+        }
+
+        val cell1 = board[point1.x][point1.y] ?: return false
+        val cell2 = board[point2.x][point2.y] ?: return false
+
+        return (currentCell.value + cell1.value + cell2.value == 10)
+    }
+
 
 }

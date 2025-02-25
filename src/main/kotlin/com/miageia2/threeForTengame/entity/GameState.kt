@@ -1,6 +1,6 @@
 package com.miageia2.threeForTengame.entity
 
-import com.miageia2.threeForTengame.entity.utils.GamePointDetail
+import com.miageia2.threeForTengame.entity.utils.BoardCell
 import lombok.Data
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
@@ -20,8 +20,8 @@ class GameState (
     var gamePartId: String? = null, // Référence vers la partie
     var turn: Int = 0, // Numéro du tour
     var currentPlayerId: String? = null, // Joueur dont c'est le tour
-    var boardState: Array<Array<GamePointDetail?>>? = null, // Plateau sous forme de tableau 2D
-    var lastMove: Point? = null, // Dernier mouvement
+    var boardState: Array<Array<BoardCell?>>? = null, // Plateau sous forme de tableau 2D
+    var lastMove: PlayerTurn? = null, // Dernier mouvement
     var isFinished: Boolean = false, // Indique si la partie est terminée
     var winnerId: String? = null, // Joueur gagnant (null si partie en cours)
     var createdAt: Instant? = null, // Date/heure de l'état

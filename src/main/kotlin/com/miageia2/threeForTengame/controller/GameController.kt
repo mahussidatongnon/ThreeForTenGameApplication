@@ -52,7 +52,7 @@ class GameController( val gamePartService: GamePartService, val playerService: P
         return ResponseEntity.ok(gamePartService.startGame(gameId))
     }
 
-    @GetMapping("/{gameId}/play")
+    @PostMapping("/{gameId}/play")
     fun play(@PathVariable gameId: String, @RequestBody playGameDTO: PlayGameDTO): ResponseEntity<GameState> {
         val gamePart = gamePartService.findById(gameId)
 
@@ -61,10 +61,10 @@ class GameController( val gamePartService: GamePartService, val playerService: P
 
         val player = playerService.getPlayerByUsername(playGameDTO.playerUsername)?.orElseThrow { IllegalArgumentException("Username not found") }!!
 
-        return ResponseEntity.ok(gameStateService.play(gamePart, player, playGameDTO.coordinates))
+        return ResponseEntity.ok(gameStateService.play(gamePart, player, playGameDTO.coordinates, playGameDTO.coinValue))
     }
     @GetMapping("/{gameId}/state")
-    fun getSaate(@PathVariable gameId: String, @RequestBody playGameDTO: PlayGameDTO): ResponseEntity<GameState> {
+    fun getState(@PathVariable gameId: String): ResponseEntity<GameState> {
         val gamePart = gamePartService.findById(gameId)
 
         if (gamePart.gameStateId?.isNotBlank() == true)
