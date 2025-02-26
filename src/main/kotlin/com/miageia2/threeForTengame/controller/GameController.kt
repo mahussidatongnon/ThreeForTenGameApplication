@@ -47,7 +47,7 @@ class GameController( val gamePartService: GamePartService, val playerService: P
         return ResponseEntity(gamePartService.findAll(), HttpStatus.OK)
     }
 
-    @GetMapping("/{gameId}/start")
+    @PostMapping("/{gameId}/start")
     fun startGame(@PathVariable gameId: String): ResponseEntity<GamePart> {
         return ResponseEntity.ok(gamePartService.startGame(gameId))
     }
@@ -56,10 +56,10 @@ class GameController( val gamePartService: GamePartService, val playerService: P
     fun play(@PathVariable gameId: String, @RequestBody playGameDTO: PlayGameDTO): ResponseEntity<GameState> {
         val gamePart = gamePartService.findById(gameId)
 
-        if (gamePart.gameStateId?.isNotBlank() == true)
-            throw IllegalArgumentException("GameState not found with id: $gameId")
+        if (gamePart.gameStateId.isNullOrBlank())
+            throw IllegalArgumentException("GamePart not found with id: $gameId")
 
-        val player = playerService.getPlayerByUsername(playGameDTO.playerUsername)?.orElseThrow { IllegalArgumentException("Username not found") }!!
+        val player = playerService.getPlayerByUsername(playGameDTO.playerUsername)
 
         return ResponseEntity.ok(gameStateService.play(gamePart, player, playGameDTO.coordinates, playGameDTO.coinValue))
     }
@@ -68,7 +68,7 @@ class GameController( val gamePartService: GamePartService, val playerService: P
         val gamePart = gamePartService.findById(gameId)
 
         if (gamePart.gameStateId?.isNotBlank() == true)
-            throw IllegalArgumentException("GameState not found with id: $gameId")
+            throw IllegalArgumentException("GamePart not found with id: $gameId")
 
         val gameState = gameStateService.findById(gamePart.gameStateId!!)
         return ResponseEntity.ok(gameState)

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController
 class AuthController( val playerService: PlayerService) {
     @PostMapping("/register", name = "auth.register")
     fun registerPlayer(@RequestBody createPlayerCreateDTO: PlayerCreateDTO): Player {
-        println("TEST_REGISTER")
         return playerService.createPlayer(createPlayerCreateDTO.username, createPlayerCreateDTO.password)
     }
 }

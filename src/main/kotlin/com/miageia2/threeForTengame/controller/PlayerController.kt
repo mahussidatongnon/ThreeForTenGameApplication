@@ -12,7 +12,7 @@ import java.util.*
 class PlayerController(private val playerService: PlayerService) {
 
     @GetMapping("/{username}")
-    fun getPlayer(@PathVariable username: String): Optional<Player?>? {
+    fun getPlayer(@PathVariable username: String): Player {
         return playerService.getPlayerByUsername(username)
     }
 

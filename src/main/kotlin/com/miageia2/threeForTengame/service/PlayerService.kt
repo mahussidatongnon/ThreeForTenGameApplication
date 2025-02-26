@@ -20,8 +20,11 @@ class PlayerService(private val playerRepository: PlayerRepository,
         return playerRepository.save(player)
     }
 
-    fun getPlayerByUsername(username: String?): Optional<Player?>? {
-        return playerRepository.findByUsername(username)
+    fun getPlayerByUsername(username: String): Player {
+        val player = playerRepository.findByUsername(username)
+        if (player.isEmpty)
+            throw IllegalArgumentException("Player $username not found")
+        return player.get()
     }
 
     fun findAll(): List<Player?> {

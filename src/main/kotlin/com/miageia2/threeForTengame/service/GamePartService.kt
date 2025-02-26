@@ -74,7 +74,7 @@ class GamePartService(
         val gamePart =
             gamePartRepository.findById(gameId).orElseThrow { RuntimeException("Game not found: ${gameId}") }!!
         if (gamePart.status != GamePartStatus.WAITING)
-            throw RuntimeException("Game must be waiting for starting. Status: '${gameId}'")
+            throw RuntimeException("Game must be waiting for starting. Status: '${gamePart.status}'")
         if (gamePart.player2Id.isNullOrBlank())
             throw RuntimeException("Player 2 is missing!")
 
