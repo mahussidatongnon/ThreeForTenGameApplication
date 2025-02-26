@@ -22,5 +22,4 @@ data class GamePart(
     var updatedAt: Instant? = null,
     val secretCode: String? = null,
     val nbCasesCote: Int = 7,
-    var scores: HashMap<String, Int> = hashMapOf(),
 )

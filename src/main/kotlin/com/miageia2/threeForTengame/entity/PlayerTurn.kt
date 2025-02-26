@@ -8,7 +8,8 @@ import java.util.*
 data class PlayerTurn(
     val turn: Int,
     val point: Point,
-    val value: Int,
+    val coinValue: Int,
+    val score: Int = 0,
     val gameStateId: String,
     val wonPoints: EnumMap<WinningDirection, MutableSet<Point>>,
 )

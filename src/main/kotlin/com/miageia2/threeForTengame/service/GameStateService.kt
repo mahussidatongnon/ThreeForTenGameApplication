@@ -51,8 +51,6 @@ class GameStateService(
         // Vérifier les groupes de 3 cases totalisant 10
         val (pointsGagnes, wonPoints) = countWinningGroups(gameState, coordinates, coinValue, player)
 
-        // Mise à jour du score du joueur en s'assurant qu'il existe déjà dans la HashMap
-        gamePart.scores[player.id!!] = gamePart.scores.getOrDefault(player.id, 0) + pointsGagnes
 
         gameState.apply {
             currentPlayerId = if(player.id == gamePart.player1Id) gamePart.player2Id else gamePart.player1Id
@@ -60,13 +58,18 @@ class GameStateService(
             lastMove = PlayerTurn(
                 turn,
                 point = Point(coordinates.x, coordinates.y, player.id),
-                value = coinValue,
+                coinValue = coinValue,
+                score = pointsGagnes,
                 wonPoints = wonPoints,
                 gameStateId = id!!,
             )
             turn ++
             isFinished = if (turn.compareTo(gamePart.nbCasesCote.toFloat().pow(2)) == 0) true else false
-            winnerId = if(isFinished) gamePart.scores.maxByOrNull { it.value }?.key else null
+
+            // Mise à jour du score du joueur en s'assurant qu'il existe déjà dans la HashMap
+            scores[player.id!!] = scores.getOrDefault(player.id, 0) + pointsGagnes
+
+            winnerId = if(isFinished) scores.maxByOrNull { it.value }?.key else null
 
             boardState!![coordinates.x][coordinates.y] = BoardCell(
                 value = coinValue,
@@ -107,10 +110,6 @@ class GameStateService(
         for ((directionPair, direction) in directions) {
             val (dx, dy) = directionPair
 
-            println("direction: $direction")
-            if (direction == WinningDirection.VERTICAL)
-                println("isWinningGroup: ${isWinningGroup(gameState, coordinates, coinValue, dx, dy, player, direction)}")
-
             // Vérifie toutes les configurations possibles
             if (isWinningGroup(gameState, coordinates, coinValue, dx, dy, player, direction)) {
                 totalPoints++
@@ -118,7 +117,7 @@ class GameStateService(
                     setOf(
                         Point(coordinates.x, coordinates.y, player.id),
                         Point(coordinates.x + dx, coordinates.y + dy, player.id),
-                        Point(coordinates.x + 2 * dx, coordinates.y + 2 *  dy, player.id)
+                        Point(coordinates.x + (2 * dx), coordinates.y + (2 *  dy), player.id)
                     )
                 )
             }
@@ -128,7 +127,7 @@ class GameStateService(
                     setOf(
                         Point(coordinates.x, coordinates.y, player.id),
                         Point(coordinates.x - dx, coordinates.y - dy, player.id),
-                        Point(coordinates.x - 2 * dx, coordinates.y - 2 *  dy, player.id)
+                        Point(coordinates.x - (2 * dx), coordinates.y - (2 *  dy), player.id)
                     )
                 )
             }
@@ -164,7 +163,7 @@ class GameStateService(
         println("x=$x, y=$y")
 
         val point1 = PointDTO(x + dx, y + dy)
-        val point2 = PointDTO(x + 2 * dx, y + 2 * dy)
+        val point2 = PointDTO(x + (2 * dx), y + (2 * dy))
         println("point1=$point1, point2=$point2")
 
         if (!isInsideBoard(point1, gameState.boardState!!) || !isInsideBoard(point2, gameState.boardState!!)) {
