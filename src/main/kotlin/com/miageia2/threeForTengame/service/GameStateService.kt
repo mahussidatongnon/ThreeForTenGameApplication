@@ -3,6 +3,7 @@ package com.miageia2.threeForTengame.service
 import com.miageia2.threeForTengame.dto.PointDTO
 import com.miageia2.threeForTengame.entity.*
 import com.miageia2.threeForTengame.entity.utils.BoardCell
+import com.miageia2.threeForTengame.entity.utils.GamePartStatus
 import com.miageia2.threeForTengame.entity.utils.WinningDirection
 import com.miageia2.threeForTengame.repository.GamePartRepository
 import com.miageia2.threeForTengame.repository.GameStateRepository
@@ -84,6 +85,9 @@ class GameStateService(
                 }
             }
         }
+
+        if (gameState.isFinished)
+            gamePart.status = GamePartStatus.FINISHED
 
         gamePartRepository.save(gamePart)
         playerTurnRepository.save(gameState.lastMove!!)

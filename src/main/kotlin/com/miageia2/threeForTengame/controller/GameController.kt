@@ -67,7 +67,7 @@ class GameController( val gamePartService: GamePartService, val playerService: P
     fun getState(@PathVariable gameId: String): ResponseEntity<GameState> {
         val gamePart = gamePartService.findById(gameId)
 
-        if (gamePart.gameStateId?.isNotBlank() == true)
+        if (gamePart.gameStateId.isNullOrBlank())
             throw IllegalArgumentException("GamePart not found with id: $gameId")
 
         val gameState = gameStateService.findById(gamePart.gameStateId!!)
