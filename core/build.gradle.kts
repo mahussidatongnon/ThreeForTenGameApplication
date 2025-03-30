@@ -14,29 +14,28 @@ java {
     }
 }
 
-configurations {
-    compileOnly {
-        extendsFrom(configurations.annotationProcessor.get())
-    }
-}
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
     implementation(project(":common"))
-    compileOnly("org.projectlombok:lombok")
+    implementation("org.projectlombok:lombok")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.5")
-    implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.2.1")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-websocket")
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.2.1")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+//	implementation("org.springframework.boot:spring-boot-starter-security")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    testImplementation("org.springframework.security:spring-security-test")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     annotationProcessor("org.projectlombok:lombok")
 }
@@ -50,5 +49,3 @@ kotlin {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
-
-tasks.register("prepareKotlinBuildScriptModel"){}
