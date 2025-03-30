@@ -27,6 +27,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 	implementation("org.springframework.boot:spring-boot-starter-websocket")
+	implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.2.1")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 //	implementation("org.springframework.boot:spring-boot-starter-security")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
