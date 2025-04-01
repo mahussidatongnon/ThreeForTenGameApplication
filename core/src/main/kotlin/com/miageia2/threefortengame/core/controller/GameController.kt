@@ -9,7 +9,6 @@ import com.miageia2.threefortengame.common.dto.core.PlayGameDTO
 import com.miageia2.threefortengame.common.dto.core.PointDTO
 import com.miageia2.threefortengame.core.entity.GamePart
 import com.miageia2.threefortengame.core.entity.GameState
-import com.miageia2.threefortengame.core.proxy.AiPlayerClient
 import com.miageia2.threefortengame.core.service.GamePartService
 import com.miageia2.threefortengame.core.service.PlayerService
 import com.miageia2.threefortengame.core.service.GameStateService
@@ -28,19 +27,20 @@ import org.springframework.web.bind.annotation.RestController
 class GameController( private val gamePartService: GamePartService,
                       private val playerService: PlayerService,
                       private val gameStateService:GameStateService,
-                      private val messagingTemplate: SimpMessagingTemplate,
-                      private val aiPlayerClient: AiPlayerClient
+                      private val messagingTemplate: SimpMessagingTemplate
     ) {
 
     @PostMapping("/")
     fun createGame(@RequestBody gamePartCreateDTO: GamePartCreateDTO): ResponseEntity<GamePart> {
         val gamePart = gamePartService.createGame(gamePartCreateDTO)
-        arrayOf(gamePart.player1Id, gamePart.player2Id).forEach { playerId ->
+        arrayOf(gamePart.player1Id, gamePart.player2Id).forEachIndexed() { index, playerId ->
             playerId?.let {
                 val player2 = playerService.findById(it)
                 if (player2.username in AiPlayerType.entries.map { it.name }) {
                     println("Register: $it")
-                    aiPlayerClient.register(RegisterGameDTO(gamePart.id!!, AiPlayerType.valueOf(player2.username)))
+                    val registerGameDTO = RegisterGameDTO(gamePart.id!!, AiPlayerType.valueOf(player2.username))
+                    messagingTemplate.convertAndSend("/topic/players/register", registerGameDTO)
+                    println("Demande d'enrégistrement player_${index+1}-createGame")
                 }
             }
         }
@@ -54,7 +54,9 @@ class GameController( private val gamePartService: GamePartService,
         gamePart.player2Id?.let {
             val player2 = playerService.findById(it)
             if (player2.username in AiPlayerType.entries.map { it.name }) {
-                aiPlayerClient.register(RegisterGameDTO(gamePart.id!!, AiPlayerType.valueOf(player2.username)))
+                val registerGameDTO = RegisterGameDTO(gamePart.id!!, AiPlayerType.valueOf(player2.username))
+                messagingTemplate.convertAndSend("/topic/players/register", registerGameDTO)
+                println("Demande d'enrégistrement player2-joinGame")
             }
         }
         return ResponseEntity(gamePart, HttpStatus.OK)
@@ -65,6 +67,14 @@ class GameController( private val gamePartService: GamePartService,
         return ResponseEntity(gamePartService.findById(gameId), HttpStatus.OK)
     }
 
+    @GetMapping("/debug")
+    fun debug(): ResponseEntity<Unit> {
+        val registerGameDTO = RegisterGameDTO("67ebba24d009911e746e7983", AiPlayerType.RANDOM)
+        messagingTemplate.convertAndSend("/topic/players/register", registerGameDTO)
+        println("Message envoyé avec success")
+        return ResponseEntity.ok().build()
+    }
+
     @GetMapping("")
     fun findAll(): ResponseEntity<List<GamePart?>> {
         return ResponseEntity(gamePartService.findAll(), HttpStatus.OK)
@@ -73,7 +83,7 @@ class GameController( private val gamePartService: GamePartService,
     @PostMapping("/{gameId}/start")
     fun startGame(@PathVariable gameId: String): ResponseEntity<GamePart> {
         val gamePart = gamePartService.startGame(gameId)
-        val gameState = gameStateService.findById(gameId)
+        val gameState = gameStateService.findById(gamePart.gameStateId!!)
         messagingTemplate.convertAndSend("/topic/games/${gamePart.id}/state", gameState)
         return ResponseEntity.ok(gamePart)
     }

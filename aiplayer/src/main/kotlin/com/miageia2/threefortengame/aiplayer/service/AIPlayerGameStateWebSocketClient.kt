@@ -17,7 +17,7 @@ class AIPlayerWebSocketClient(private val gamePartId: String) : StompSessionHand
         stompClient.messageConverter = MappingJackson2MessageConverter()
 
         val future: CompletableFuture<StompSession> = stompClient.connectAsync(
-            "ws://localhost:8080/ws-game", this
+            "ws://localhost:8082/ws-game", this
         )
         stompSession = future.get() // Bloque jusqu'à la connexion
         println("✅ IA connectée au WebSocket !")
@@ -36,7 +36,7 @@ class AIPlayerWebSocketClient(private val gamePartId: String) : StompSessionHand
 
     fun makeMove() {
         val move = GameMove("AI_Player", "coup_random")
-        stompSession.send("/app/play/$gamePartId", move)
+//        stompSession.send("/app/play/$gamePartId", move)
         println("🤖 IA a joué un coup : $move")
     }
 

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 
-@FeignClient(name = "gameClient", url = "http://localhost:8082/games/")
+@FeignClient(name = "gameClient", url = "\${game-client.url}")
 interface GameClient {
     @GetMapping("/{gameId}")
     fun getById(@PathVariable gameId: String): GamePartDTO

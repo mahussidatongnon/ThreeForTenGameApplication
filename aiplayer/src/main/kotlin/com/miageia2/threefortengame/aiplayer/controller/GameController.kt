@@ -16,13 +16,14 @@ import com.miageia2.threefortengame.common.dto.core.PlayGameDTO
 class GameController(private val gameClient: GameClient) {
 
 
-    @PostMapping("/register")
-    fun register(@RequestBody registerGameDTO: RegisterGameDTO): ResponseEntity<Unit> {
-        val gamePart: GamePartDTO = gameClient.getById(registerGameDTO.gamePartId)
-        val aiPlayer = AIPlayerWebSocketClient(gamePart.id)
-        aiPlayer.connect()
-        return ResponseEntity.ok().build()
-    }
+//    @PostMapping("/register")
+//    fun register(@RequestBody registerGameDTO: RegisterGameDTO): ResponseEntity<Unit> {
+//        val gamePart: GamePartDTO = gameClient.getById(registerGameDTO.gamePartId)
+//
+//        val aiPlayer = AIPlayerWebSocketClient(gamePart.id)
+//        aiPlayer.connect()
+//        return ResponseEntity.ok().build()
+//    }
 
     @PostMapping("/training")
     fun training(): ResponseEntity<Unit> {
@@ -33,7 +34,6 @@ class GameController(private val gameClient: GameClient) {
             secretCode = secretCode,
             nbCasesCote = 7
         ))
-        println("gamePart: $gamePart")
         gameClient.startGame(gamePart.id)
         return ResponseEntity.ok().build()
     }
