@@ -4,161 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68067a91-00f0-436c-bc63-5ae891630bac" name="Changes" comment="cut project into modules">
-      <change afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/checksums.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/md5-checksums.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/sha1-checksums.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.10/dependencies-accessors/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.10/fileChanges/last-build.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.10/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/checksums/checksums.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/fileChanges/last-build.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/autorunner/RegisterNewAiRunner.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/AIPlayerRegisterWebSocketClient.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/GameService.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/reports/problems/problems-report.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/META-INF/common.kotlin_module" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/MainKt.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/AiPlayerType.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/aiplayer/RegisterGameDTO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/core/BoardCellDTO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/core/GamePartCreateDTO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/core/GamePartDTO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/core/GamePartJoinDTO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/core/GameStateDTO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/core/PlayGameDTO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/core/PlayerCreateDTO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/core/PlayerTurnDTO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/core/PointDTO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/utils/GamePartStatus.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/utils/core/WinningDirection.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/package-parts.tab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/package-parts.tab.keystream" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/package-parts.tab.keystream.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/package-parts.tab.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/package-parts.tab.values.at" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/package-parts.tab_i" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/package-parts.tab_i.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/counters.tab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/file-to-id.tab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab_i" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab_i.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/last-build.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/local-state/build-history.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/libs/common-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/build/tmp/jar/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/test/kotlin/com/miageia2/threefortengame/core/CoreApplicationTests.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+    <list default="true" id="68067a91-00f0-436c-bc63-5ae891630bac" name="Changes" comment="connect to websocket">
+      <change afterPath="$PROJECT_DIR$/.docker/rabbitmq.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.docker/rabbitmq_enabled_plugins" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.docker/rabbitmq_scripts/init.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/config/WebSocketSubscriptionInterceptor.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/controller/WebsocketController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/service/WebSocketService.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/AiplayerApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/AiplayerApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/controller/GameController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/controller/GameController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/proxy/GameClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/proxy/GameClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/AIPlayerWebSocketClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/AIPlayerGameStateWebSocketClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aiplayer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/aiplayer/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/CoreApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/CoreApplication.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/AIPlayerRegisterWebSocketClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/AIPlayerRegisterWebSocketClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/core/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/config/WebSocketConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/config/WebSocketConfig.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/controller/GameController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/controller/GameController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/proxy/AiPlayerClient.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,31 +76,20 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="ThreeForTengame" type="f1a62948:ProjectNode" />
-                <item name="aiplayer" type="2d1252cf:ModuleNode" />
+                <item name="core" type="2d1252cf:ModuleNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="ThreeForTengame" type="f1a62948:ProjectNode" />
-                <item name="aiplayer" type="2d1252cf:ModuleNode" />
+                <item name="core" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="ThreeForTengame" type="f1a62948:ProjectNode" />
-                <item name="aiplayer" type="2d1252cf:ModuleNode" />
+                <item name="core" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ThreeForTengame" type="f1a62948:ProjectNode" />
-                <item name="core" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ThreeForTengame" type="f1a62948:ProjectNode" />
-                <item name="core" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
             </expand>
             <select />
@@ -277,6 +136,10 @@
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-websocket/6.2.5/fa749bb34a6aee343a22b13baf1246cddfca6168/spring-websocket-6.2.5.jar!/org/springframework/web/socket/config/annotation/WebSocketMessageBrokerConfigurer.class" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-21.0.6/Contents/Home/lib/src.zip!/java.base/java/lang/Enum.java" root0="SKIP_INSPECTION" />
   </component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -291,6 +154,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Docker.docker-compose.yml.rabbitmq: Compose Deployment.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "Gradle./Users/mahussidatongnon/Documents/GitHub/M2_MIAGE_NICE/IA_Societe/ThreeForTengame/aiplayer [build].executor": "Run",
     "Gradle.Build ThreeForTengame.executor": "Run",
@@ -354,16 +218,18 @@
       <recent name="$PROJECT_DIR$/aiplayer" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/core/.docker" />
       <recent name="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service" />
       <recent name="$PROJECT_DIR$/common/src/main/kotlin/common/dto/core" />
       <recent name="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.miageia2.threefortengame.core.service" />
       <recent name="common.dto.core" />
       <recent name="common.utils.core" />
       <recent name="common.dto.aiplayer" />
       <recent name="utils.common" />
-      <recent name="com.miageia2.threefortengame.aiplayer" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="com.miageia2.threefortengame.aiplayer.controller" />
@@ -380,29 +246,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.ThreeForTengame:aiplayer [clean]">
-    <configuration name="ThreeForTengame [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="clean" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Gradle.ThreeForTengame:core [clean]">
     <configuration name="ThreeForTengame:aiplayer [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -475,8 +319,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.rabbitmq: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="envFilePath" value="" />
+          <option name="services">
+            <list>
+              <option value="rabbitmq" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Gradle.ThreeForTengame [clean]" />
+      <item itemvalue="Docker.docker-compose.yml.rabbitmq: Compose Deployment" />
       <item itemvalue="Gradle.ThreeForTengame:aiplayer [clean]" />
       <item itemvalue="Gradle.ThreeForTengame:core [clean]" />
       <item itemvalue="Spring Boot.AiplayerApplication" />
@@ -486,9 +348,9 @@
       <list>
         <item itemvalue="Spring Boot.AiplayerApplication" />
         <item itemvalue="Spring Boot.CoreApplication" />
-        <item itemvalue="Gradle.ThreeForTengame:aiplayer [clean]" />
         <item itemvalue="Gradle.ThreeForTengame:core [clean]" />
-        <item itemvalue="Gradle.ThreeForTengame [clean]" />
+        <item itemvalue="Docker.docker-compose.yml.rabbitmq: Compose Deployment" />
+        <item itemvalue="Gradle.ThreeForTengame:aiplayer [clean]" />
       </list>
     </recent_temporary>
   </component>
@@ -536,7 +398,12 @@
       <workItem from="1743374594700" duration="67000" />
       <workItem from="1743374665337" duration="1780000" />
       <workItem from="1743495249711" duration="324000" />
-      <workItem from="1743495711614" duration="7500000" />
+      <workItem from="1743495711614" duration="7767000" />
+      <workItem from="1743534931382" duration="951000" />
+      <workItem from="1743536029811" duration="46000" />
+      <workItem from="1743536156232" duration="5793000" />
+      <workItem from="1743581531897" duration="1611000" />
+      <workItem from="1743628894266" duration="9137000" />
     </task>
     <task id="LOCAL-00001" summary="initiate project">
       <option name="closed" value="true" />
@@ -618,7 +485,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743375788085</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="connect to websocket">
+      <option name="closed" value="true" />
+      <created>1743503496657</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1743503496657</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -657,7 +532,8 @@
     <MESSAGE value="add aiplayer module, game-core process done" />
     <MESSAGE value="work on aiplayer" />
     <MESSAGE value="cut project into modules" />
-    <option name="LAST_COMMIT_MESSAGE" value="cut project into modules" />
+    <MESSAGE value="connect to websocket" />
+    <option name="LAST_COMMIT_MESSAGE" value="connect to websocket" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

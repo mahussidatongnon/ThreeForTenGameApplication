@@ -1,0 +1,16 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq_stomp
+    ports:
+      - "5672:5672"   # Port AMQP
+      - "15672:15672" # Port Management Web
+      - "61613:61613" # Port STOMP
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    volumes:
+      - ./.docker/rabbitmq_enabled_plugins:/etc/rabbitmq/enabled_plugins
+      - ./.docker/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+#      - ./.docker/rabbitmq_scripts:/etc/rabbitmq/scripts  # Monter un répertoire local pour les scripts d'initialisation
+

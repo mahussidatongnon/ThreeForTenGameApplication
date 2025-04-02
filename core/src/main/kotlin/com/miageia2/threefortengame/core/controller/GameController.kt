@@ -12,9 +12,9 @@ import com.miageia2.threefortengame.core.entity.GameState
 import com.miageia2.threefortengame.core.service.GamePartService
 import com.miageia2.threefortengame.core.service.PlayerService
 import com.miageia2.threefortengame.core.service.GameStateService
+import com.miageia2.threefortengame.core.service.WebSocketService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.messaging.simp.SimpMessagingTemplate
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -24,10 +24,10 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/games")
-class GameController( private val gamePartService: GamePartService,
-                      private val playerService: PlayerService,
-                      private val gameStateService:GameStateService,
-                      private val messagingTemplate: SimpMessagingTemplate
+class GameController(private val gamePartService: GamePartService,
+                     private val playerService: PlayerService,
+                     private val gameStateService:GameStateService,
+                     private val websocketService: WebSocketService,
     ) {
 
     @PostMapping("/")
@@ -39,7 +39,7 @@ class GameController( private val gamePartService: GamePartService,
                 if (player2.username in AiPlayerType.entries.map { it.name }) {
                     println("Register: $it")
                     val registerGameDTO = RegisterGameDTO(gamePart.id!!, AiPlayerType.valueOf(player2.username))
-                    messagingTemplate.convertAndSend("/topic/players/register", registerGameDTO)
+                    websocketService.sendMessage("/players/register", registerGameDTO)
                     println("Demande d'enrégistrement player_${index+1}-createGame")
                 }
             }
@@ -55,7 +55,7 @@ class GameController( private val gamePartService: GamePartService,
             val player2 = playerService.findById(it)
             if (player2.username in AiPlayerType.entries.map { it.name }) {
                 val registerGameDTO = RegisterGameDTO(gamePart.id!!, AiPlayerType.valueOf(player2.username))
-                messagingTemplate.convertAndSend("/topic/players/register", registerGameDTO)
+                websocketService.sendMessage("/players/register", registerGameDTO)
                 println("Demande d'enrégistrement player2-joinGame")
             }
         }
@@ -70,7 +70,7 @@ class GameController( private val gamePartService: GamePartService,
     @GetMapping("/debug")
     fun debug(): ResponseEntity<Unit> {
         val registerGameDTO = RegisterGameDTO("67ebba24d009911e746e7983", AiPlayerType.RANDOM)
-        messagingTemplate.convertAndSend("/topic/players/register", registerGameDTO)
+        websocketService.sendMessage("/players-register", registerGameDTO)
         println("Message envoyé avec success")
         return ResponseEntity.ok().build()
     }
@@ -84,7 +84,7 @@ class GameController( private val gamePartService: GamePartService,
     fun startGame(@PathVariable gameId: String): ResponseEntity<GamePart> {
         val gamePart = gamePartService.startGame(gameId)
         val gameState = gameStateService.findById(gamePart.gameStateId!!)
-        messagingTemplate.convertAndSend("/topic/games/${gamePart.id}/state", gameState)
+        websocketService.sendMessage("/games/${gamePart.id}/state", gameState)
         return ResponseEntity.ok(gamePart)
     }
 
@@ -99,7 +99,7 @@ class GameController( private val gamePartService: GamePartService,
 
         val gameState = gameStateService.play(gamePart, player, playGameDTO.coordinates, playGameDTO.coinValue)
 
-        messagingTemplate.convertAndSend("/topic/games/${gamePart.id}/state", gameState)
+        websocketService.sendMessage("/games/${gamePart.id}/state", gameState)
         return ResponseEntity.ok(gameState)
     }
 
