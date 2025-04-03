@@ -20,21 +20,38 @@ class SubscribeGameStateService(private val webSocketService: WebSocketService, 
 
             override fun handleFrame(headers: StompHeaders, payload: Any?) {
                 println("data : $payload")
-                val gameStateDTO: GameStateDTO = webSocketService.jsonMapperObject.readValue(payload as String,
-                    GameStateDTO::class.java)
-                if (gameStateDTO.id != null && gameStateDTO.currentPlayerId != null)
-                    if(SubscriptionsPlayersManager.containsGameID(gameStateDTO.gamePartId!!)){
-                        val subscriptionPlayerInfo = SubscriptionsPlayersManager.getItem(gameStateDTO.gamePartId!!,
-                            gameStateDTO.currentPlayerId!!)
+                println("type : ${payload!!::class.java}")
+                val gameStateDTO: GameStateDTO
+                try {
+                    gameStateDTO = webSocketService.jsonMapperObject.readValue(
+                        payload as String, GameStateDTO::class.java
+                    )
+                    println("Conversion done")
+                } catch (e: Exception) {
+                    println("Erreur de conversion JSON : ${e.message}")
+                    e.printStackTrace()
+                    return // Arrête l'exécution si une erreur survient
+                }
+                println("Conversion done")
+                if (gameStateDTO.id != null && gameStateDTO.currentPlayerId != null) {
+                    println("Valide gameState")
+                    if (SubscriptionsPlayersManager.containsGameID(gameStateDTO.gamePartId!!)) {
+                        println("Valide SubscriptionsPlayersManager")
+                        val subscriptionPlayerInfo = SubscriptionsPlayersManager.getItem(
+                            gameStateDTO.gamePartId!!,
+                            gameStateDTO.currentPlayerId!!
+                        )
                         if (subscriptionPlayerInfo != null) {
+                            println("Valide subscriptionPlayerInfo")
                             gameService.play(gameStateDTO)
                         } else
                             println("subscriptionPlayerInfo is null")
                     } else {
                         println("SubscriptionsPlayersManager doesn't contains gameID ${gameStateDTO.gamePartId}")
                     }
-                else
+                } else {
                     println("Id or currentPlayer not found")
+                }
             }
         })
     }

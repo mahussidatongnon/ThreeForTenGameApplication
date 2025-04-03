@@ -7,9 +7,9 @@ import java.util.*
 @Document(collection = "players_turns")
 data class PlayerTurn(
     val turn: Int,
-    val point: com.miageia2.threefortengame.core.entity.Point,
+    val point: Point,
     val coinValue: Int,
     val score: Int = 0,
     val gameStateId: String,
-    val wonPoints: EnumMap<WinningDirection, MutableSet<com.miageia2.threefortengame.core.entity.Point>>,
+    val wonPoints: EnumMap<WinningDirection, MutableSet<Point>>,
 )

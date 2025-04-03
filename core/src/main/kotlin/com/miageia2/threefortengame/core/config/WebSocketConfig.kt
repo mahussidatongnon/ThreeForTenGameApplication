@@ -24,15 +24,16 @@ class WebSocketConfig @Autowired constructor(
     lateinit var messageBrokerTaskScheduler: TaskScheduler
 
     override fun configureMessageBroker(registry: MessageBrokerRegistry) {
-        registry.enableStompBrokerRelay("/topic", "/queue")
-            .setRelayHost("localhost")
-            .setRelayPort(61613)
-            .setSystemLogin("myuser")
-            .setClientLogin("myuser2")
-            .setSystemPasscode("mypassword")
-            .setClientPasscode("mypassword")
-            .setTaskScheduler(messageBrokerTaskScheduler) // 🔥 Correction ici
-//        registry.enableSimpleBroker("/topic", "/queue")
+//        registry.enableStompBrokerRelay("/topic", "/queue")
+//            .setRelayHost("localhost")
+//            .setRelayPort(61613)
+//            .setSystemLogin("myuser")
+//            .setClientLogin("myuser2")
+//            .setSystemPasscode("mypassword")
+//            .setClientPasscode("mypassword")
+//            .setTaskScheduler(messageBrokerTaskScheduler) // 🔥 Correction ici
+        registry.enableSimpleBroker("/topic", "/queue")
+            .setTaskScheduler(messageBrokerTaskScheduler)
         registry.setApplicationDestinationPrefixes("/app")
     }
 

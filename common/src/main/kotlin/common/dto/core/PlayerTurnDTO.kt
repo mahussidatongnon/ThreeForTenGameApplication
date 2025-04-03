@@ -5,9 +5,9 @@ import java.util.*
 
 data class PlayerTurnDTO (
     val turn: Int,
-    val point: PointDTO,
+    val point: PointPlayedDTO,
     val coinValue: Int,
     val score: Int = 0,
     val gameStateId: String,
-    val wonPoints: EnumMap<WinningDirection, MutableSet<PointDTO>>,
+    val wonPoints: EnumMap<WinningDirection, MutableSet<PointPlayedDTO>>,
 )
