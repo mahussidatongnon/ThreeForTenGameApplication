@@ -34,6 +34,7 @@ class WebSocketConfig @Autowired constructor(
 //            .setTaskScheduler(messageBrokerTaskScheduler) // 🔥 Correction ici
         registry.enableSimpleBroker("/topic", "/queue")
             .setTaskScheduler(messageBrokerTaskScheduler)
+            .setHeartbeatValue(longArrayOf(10000, 15000)) // Heartbeat toutes les 10s
         registry.setApplicationDestinationPrefixes("/app")
     }
 

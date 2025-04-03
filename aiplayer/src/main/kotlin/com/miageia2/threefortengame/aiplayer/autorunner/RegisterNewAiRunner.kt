@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class RegisterNewAiRunner(@Autowired private val subscribeRegisterPlayerService: SubscribeRegisterPlayerService) {  // Injection correcte de GameService
     @Bean
-    fun runAtStartup(): ApplicationRunner {
+    fun runRegisterNewAiRunnerAtStartup(): ApplicationRunner {
         return ApplicationRunner {
             println("L'application vient de démarrer !")
             subscribeRegisterPlayerService.handle()

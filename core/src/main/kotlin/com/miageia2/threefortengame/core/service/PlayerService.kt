@@ -1,13 +1,17 @@
 package com.miageia2.threefortengame.core.service
 
+import com.miageia2.threefortengame.common.dto.core.GamePartDTO
+import com.miageia2.threefortengame.common.utils.core.GamePartStatus
+import com.miageia2.threefortengame.core.entity.GamePart
 import com.miageia2.threefortengame.core.entity.Player
+import com.miageia2.threefortengame.core.repository.GamePartRepository
 import com.miageia2.threefortengame.core.repository.PlayerRepository
 //import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
 class PlayerService(private val playerRepository: PlayerRepository,
-//                    val passwordEncoder: PasswordEncoder
+                    private val gameRepository: GamePartRepository
 ) {
 
     fun createPlayer(username: String, rawPassword: String): Player {
@@ -31,6 +35,14 @@ class PlayerService(private val playerRepository: PlayerRepository,
         if (player.isEmpty)
             throw IllegalArgumentException("Player $id not found")
         return player.get()
+    }
+
+    fun getGamesByPlayerAndStatus(idPlayer: String, status: GamePartStatus?): List<GamePart> {
+        if (status == null) {
+            return gameRepository.findByPlayer(idPlayer)
+        } else {
+            return gameRepository.findByPlayerAndStatus(idPlayer, status)
+        }
     }
 
     fun findAll(): List<Player?> {

@@ -5,7 +5,7 @@ import com.miageia2.threefortengame.common.dto.core.GamePartCreateDTO
 import com.miageia2.threefortengame.common.dto.core.GamePartJoinDTO
 import com.miageia2.threefortengame.core.entity.GamePart
 import com.miageia2.threefortengame.core.entity.GameState
-import com.miageia2.threefortengame.core.entity.utils.GamePartStatus
+import com.miageia2.threefortengame.common.utils.core.GamePartStatus
 import com.miageia2.threefortengame.core.repository.GameStateRepository
 import com.miageia2.threefortengame.core.repository.GamePartRepository
 import com.miageia2.threefortengame.core.repository.PlayerRepository

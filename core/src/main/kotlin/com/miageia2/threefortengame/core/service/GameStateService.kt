@@ -3,7 +3,7 @@ package com.miageia2.threefortengame.core.service
 import com.miageia2.threefortengame.common.dto.core.PointDTO
 import com.miageia2.threefortengame.core.entity.*
 import com.miageia2.threefortengame.core.entity.utils.BoardCell
-import com.miageia2.threefortengame.core.entity.utils.GamePartStatus
+import com.miageia2.threefortengame.common.utils.core.GamePartStatus
 import com.miageia2.threefortengame.common.utils.core.WinningDirection
 import com.miageia2.threefortengame.core.repository.GamePartRepository
 import com.miageia2.threefortengame.core.repository.GameStateRepository

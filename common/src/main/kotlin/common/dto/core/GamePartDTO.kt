@@ -1,6 +1,6 @@
 package com.miageia2.threefortengame.common.dto.core
 
-import com.miageia2.threefortengame.common.utils.GamePartStatus
+import com.miageia2.threefortengame.common.utils.core.GamePartStatus
 import java.time.Instant
 
 data class GamePartDTO(

@@ -39,10 +39,14 @@ class WebSocketService {
                 override fun afterConnected(session: StompSession, connectedHeaders: StompHeaders) {
                     println("✅ IA connectée au WebSocket !")
                     _stompSession = session
+
+                    // Activer les heartbeats
+
                 }
 
                 override fun handleTransportError(session: StompSession, exception: Throwable) {
                     println("❌ Erreur WebSocket : ${exception.message}")
+                    reconnect()
                 }
             }
         )
@@ -51,8 +55,15 @@ class WebSocketService {
         future.whenComplete { session, error ->
             if (error != null) {
                 println("❌ Erreur de connexion WebSocket : ${error.message}")
+                reconnect()
             }
             println("sessionID: ${session.sessionId}")
         }
+    }
+
+    private fun reconnect() {
+        println("♻️ Tentative de reconnexion WebSocket...")
+        Thread.sleep(5000) // Attente avant la reconnexion
+        connect()
     }
 }

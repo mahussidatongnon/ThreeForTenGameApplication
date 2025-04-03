@@ -1,6 +1,6 @@
 package com.miageia2.threefortengame.core.entity
 
-import com.miageia2.threefortengame.core.entity.utils.GamePartStatus
+import com.miageia2.threefortengame.common.utils.core.GamePartStatus
 import lombok.Data
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
