@@ -35,11 +35,12 @@ class GameController(private val gamePartService: GamePartService,
         val gamePart = gamePartService.createGame(gamePartCreateDTO)
         arrayOf(gamePart.player1Id, gamePart.player2Id).forEachIndexed() { index, playerId ->
             playerId?.let {
-                val player2 = playerService.findById(it)
-                if (player2.username in AiPlayerType.entries.map { it.name }) {
+                val player = playerService.findById(it)
+                if (player.username in AiPlayerType.entries.map { it.name }) {
                     println("Register: $it")
-                    val registerGameDTO = RegisterGameDTO(gamePart.id!!, AiPlayerType.valueOf(player2.username))
-                    websocketService.sendMessage("/players/register", registerGameDTO)
+                    val registerGameDTO = RegisterGameDTO(gamePart.id!!, AiPlayerType.valueOf(player.username),
+                        player.id!!)
+                    websocketService.sendMessage("/players.register", registerGameDTO)
                     println("Demande d'enrégistrement player_${index+1}-createGame")
                 }
             }
@@ -52,10 +53,11 @@ class GameController(private val gamePartService: GamePartService,
         var gamePart = gamePartService.findById(gameId)
         gamePart = gamePartService.joinGame(gamePart, gamePartJoinDTO)
         gamePart.player2Id?.let {
-            val player2 = playerService.findById(it)
-            if (player2.username in AiPlayerType.entries.map { it.name }) {
-                val registerGameDTO = RegisterGameDTO(gamePart.id!!, AiPlayerType.valueOf(player2.username))
-                websocketService.sendMessage("/players/register", registerGameDTO)
+            val player = playerService.findById(it)
+            if (player.username in AiPlayerType.entries.map { it.name }) {
+                val registerGameDTO = RegisterGameDTO(gamePart.id!!, AiPlayerType.valueOf(player.username),
+                    player.id!!)
+                websocketService.sendMessage("/players.register", registerGameDTO)
                 println("Demande d'enrégistrement player2-joinGame")
             }
         }
@@ -67,13 +69,13 @@ class GameController(private val gamePartService: GamePartService,
         return ResponseEntity(gamePartService.findById(gameId), HttpStatus.OK)
     }
 
-    @GetMapping("/debug")
-    fun debug(): ResponseEntity<Unit> {
-        val registerGameDTO = RegisterGameDTO("67ebba24d009911e746e7983", AiPlayerType.RANDOM)
-        websocketService.sendMessage("/players-register", "registerGameDTO")
-        println("Message envoyé avec success")
-        return ResponseEntity.ok().build()
-    }
+//    @GetMapping("/debug")
+//    fun debug(): ResponseEntity<Unit> {
+//        val registerGameDTO = RegisterGameDTO("67ebba24d009911e746e7983", AiPlayerType.RANDOM)
+//        websocketService.sendMessage("/players.register", registerGameDTO)
+//        println("Message envoyé avec success")
+//        return ResponseEntity.ok().build()
+//    }
 
     @GetMapping("")
     fun findAll(): ResponseEntity<List<GamePart?>> {
@@ -84,7 +86,7 @@ class GameController(private val gamePartService: GamePartService,
     fun startGame(@PathVariable gameId: String): ResponseEntity<GamePart> {
         val gamePart = gamePartService.startGame(gameId)
         val gameState = gameStateService.findById(gamePart.gameStateId!!)
-        websocketService.sendMessage("/games/${gamePart.id}/state", gameState)
+        websocketService.sendMessage("/games.${gamePart.id}.state", gameState)
         return ResponseEntity.ok(gamePart)
     }
 
@@ -99,7 +101,7 @@ class GameController(private val gamePartService: GamePartService,
 
         val gameState = gameStateService.play(gamePart, player, playGameDTO.coordinates, playGameDTO.coinValue)
 
-        websocketService.sendMessage("/games/${gamePart.id}/state", gameState)
+        websocketService.sendMessage("/games.${gamePart.id}.state", gameState)
         return ResponseEntity.ok(gameState)
     }
 

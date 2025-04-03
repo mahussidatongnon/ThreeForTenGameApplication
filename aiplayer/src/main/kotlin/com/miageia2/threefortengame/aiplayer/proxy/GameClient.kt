@@ -23,4 +23,7 @@ interface GameClient {
 
     @PostMapping("/{gameId}/play")
     fun play(@PathVariable gameId: String, @RequestBody playGameDTO: PlayGameDTO): GameStateDTO
-    }
+
+    @GetMapping("/{gameId}/legal-actions")
+    fun getLegalActions(@PathVariable gameId: String): Array<PointDTO>
+}

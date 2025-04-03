@@ -30,11 +30,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-websocket")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.2.1")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-//    implementation("io.projectreactor.netty:reactor-netty:1.1.13")
-//    implementation(platform("io.projectreactor:reactor-bom:2025.0.0-M1"))    // define dependencies without versions
-//    implementation("io.projectreactor:reactor-core:3.8.0-M1")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.3")
     implementation("io.projectreactor.netty:reactor-netty:1.2.4")
-//    runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.2.0.RC4")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 //	implementation("org.springframework.boot:spring-boot-starter-security")
     testImplementation("org.springframework.boot:spring-boot-starter-test")

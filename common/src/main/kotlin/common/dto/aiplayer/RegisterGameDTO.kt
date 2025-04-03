@@ -4,5 +4,6 @@ import com.miageia2.threefortengame.common.AiPlayerType
 
 data class RegisterGameDTO (
     val gamePartId: String,
-    val aiPlayerType: AiPlayerType
+    val aiPlayerType: AiPlayerType,
+    val playerId: String
 )

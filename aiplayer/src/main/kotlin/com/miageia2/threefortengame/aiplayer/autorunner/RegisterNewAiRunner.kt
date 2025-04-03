@@ -1,18 +1,19 @@
 package com.miageia2.threefortengame.aiplayer.autorunner
 
-import com.miageia2.threefortengame.aiplayer.service.AIPlayerRegisterWebSocketClient
 import com.miageia2.threefortengame.aiplayer.service.GameService
+import com.miageia2.threefortengame.aiplayer.service.SubscribeRegisterPlayerService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.ApplicationRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-class RegisterNewAiRunner(private val gameService: GameService) {  // Injection correcte de GameService
+class RegisterNewAiRunner(@Autowired private val subscribeRegisterPlayerService: SubscribeRegisterPlayerService) {  // Injection correcte de GameService
     @Bean
     fun runAtStartup(): ApplicationRunner {
         return ApplicationRunner {
             println("L'application vient de démarrer !")
-            AIPlayerRegisterWebSocketClient(gameService).connect()  // Passage du service correctement
+            subscribeRegisterPlayerService.handle()
         }
     }
 }

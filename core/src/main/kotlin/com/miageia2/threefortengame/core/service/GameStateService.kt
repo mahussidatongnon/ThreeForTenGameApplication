@@ -227,10 +227,14 @@ class GameStateService(
             .orElseThrow { IllegalArgumentException("GameState not found") }!!
 
         val legalActions: MutableList<PointDTO> = ArrayList()
-        gameState.boardState!!.forEachIndexed { xIndex, rowBoardCells ->
-            rowBoardCells.filterNotNull().forEachIndexed { yIndex, _ ->
-                legalActions.add(PointDTO(xIndex, yIndex))
-            }
+        println(gameState.id)
+        println(gameState.boardState!![0][0])
+        gameState.boardState!!.forEachIndexed { x, rowBoardCells ->
+            rowBoardCells.withIndex()
+                .filter { it.value == null }
+                .forEach { item ->
+                    legalActions.add(PointDTO(x, item.index))
+                }
         }
         return legalActions.toTypedArray()
     }

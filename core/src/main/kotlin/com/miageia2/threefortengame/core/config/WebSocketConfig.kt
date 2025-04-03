@@ -1,8 +1,11 @@
 package com.miageia2.threefortengame.core.config
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Lazy
+import org.springframework.messaging.converter.MappingJackson2MessageConverter
+import org.springframework.messaging.converter.MessageConverter
 import org.springframework.messaging.simp.config.ChannelRegistration
 import org.springframework.messaging.simp.config.MessageBrokerRegistry
 import org.springframework.scheduling.TaskScheduler
@@ -43,5 +46,10 @@ class WebSocketConfig @Autowired constructor(
 
     override fun configureClientOutboundChannel(registration: ChannelRegistration) {
         registration.interceptors(subscriptionInterceptor)
+    }
+
+    @Bean
+    fun messageConverter(): MappingJackson2MessageConverter {
+        return MappingJackson2MessageConverter() // Retourne un convertisseur JSON
     }
 }
