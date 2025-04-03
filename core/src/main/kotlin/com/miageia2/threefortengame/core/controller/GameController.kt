@@ -70,7 +70,7 @@ class GameController(private val gamePartService: GamePartService,
     @GetMapping("/debug")
     fun debug(): ResponseEntity<Unit> {
         val registerGameDTO = RegisterGameDTO("67ebba24d009911e746e7983", AiPlayerType.RANDOM)
-        websocketService.sendMessage("/players-register", registerGameDTO)
+        websocketService.sendMessage("/players-register", "registerGameDTO")
         println("Message envoyé avec success")
         return ResponseEntity.ok().build()
     }

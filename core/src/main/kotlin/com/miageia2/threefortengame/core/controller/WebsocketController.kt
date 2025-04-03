@@ -7,9 +7,9 @@ import org.springframework.stereotype.Controller
 @Controller
 class WebsocketController {
 
-    @MessageMapping("/players-register")
-    @SendTo("/players-register")
-    fun sendGameUpdate(message: String): String {
-        return "Message reçu"
-    }
+//    @MessageMapping("/players-register")
+//    @SendTo("/players-register")
+//    fun sendGameUpdate(message: String): String {
+//        return "Message reçu"
+//    }
 }

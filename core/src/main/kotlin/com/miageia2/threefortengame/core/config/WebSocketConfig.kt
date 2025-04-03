@@ -25,7 +25,7 @@ class WebSocketConfig @Autowired constructor(
             .setRelayHost("localhost")
             .setRelayPort(61613)
             .setSystemLogin("myuser")
-            .setClientLogin("myuser")
+            .setClientLogin("myuser2")
             .setSystemPasscode("mypassword")
             .setClientPasscode("mypassword")
             .setTaskScheduler(messageBrokerTaskScheduler) // 🔥 Correction ici

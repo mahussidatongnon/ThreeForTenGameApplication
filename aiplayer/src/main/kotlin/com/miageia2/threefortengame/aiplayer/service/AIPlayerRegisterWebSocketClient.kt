@@ -2,6 +2,7 @@ package com.miageia2.threefortengame.aiplayer.service
 
 import com.miageia2.threefortengame.common.dto.aiplayer.RegisterGameDTO
 import org.springframework.messaging.converter.MappingJackson2MessageConverter
+import org.springframework.messaging.converter.StringMessageConverter
 import org.springframework.messaging.simp.stomp.*
 import org.springframework.messaging.simp.stomp.StompSession.Subscription
 import org.springframework.web.socket.client.standard.StandardWebSocketClient
@@ -17,7 +18,9 @@ class AIPlayerRegisterWebSocketClient(private val gameService: GameService) {
     fun connect() {
         val webSocketClient = StandardWebSocketClient()
         val stompClient = WebSocketStompClient(webSocketClient)
-        stompClient.messageConverter = MappingJackson2MessageConverter()
+//        stompClient.messageConverter = MappingJackson2MessageConverter()
+        stompClient.messageConverter = StringMessageConverter()
+
 
         val future: CompletableFuture<StompSession> = stompClient.connectAsync(
             "ws://localhost:8082/ws-game", object : StompSessionHandlerAdapter() {
@@ -27,13 +30,13 @@ class AIPlayerRegisterWebSocketClient(private val gameService: GameService) {
 
                     subscription = stompSession.subscribe("/topic/players-register", object : StompFrameHandler {
                         override fun getPayloadType(headers: StompHeaders): Type {
-                            return RegisterGameDTO::class.java
+                            return String::class.java
                         }
 
                         override fun handleFrame(headers: StompHeaders, payload: Any?) {
                             println("📩 With topic Notification reçue : $payload")
-                            val registerGameDTO = payload as? RegisterGameDTO ?: return
-                            println("🔄 Réception d'un nouvel utilisateur: $registerGameDTO")
+//                            val registerGameDTO = payload as? RegisterGameDTO ?: return
+//                            println("🔄 Réception d'un nouvel utilisateur: $registerGameDTO")
 
                             // 🔹 Récupération du jeu et connexion de l'IA
 //                            val gamePart: GamePartDTO = gameService.getGame(registerGameDTO.gamePartId)
@@ -42,7 +45,7 @@ class AIPlayerRegisterWebSocketClient(private val gameService: GameService) {
                         }
                     })
 
-                    stompSession.send("/topic/players-register", "Hello, world!")
+//                    stompSession.send("/topic/players-register", "Hello, world!")
 
 //                    println("sessionID: ${stompSession.sessionId}")
 //                    println("ID: ${subscription.subscriptionId}")
