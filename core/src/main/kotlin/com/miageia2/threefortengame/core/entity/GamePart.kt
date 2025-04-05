@@ -16,7 +16,7 @@ data class GamePart(
     var player2Id: String? = null, // Référence vers Player
     var gameStateId: String? = null,
     var status: GamePartStatus = GamePartStatus.WAITING, // "waiting", "in_progress", "finished"
-    var winnerId: String? = null, // Référence vers Player si gagnant
+    var winnerIndex: Int? = null, // Référence vers Player si gagnant
     var history: List<String>? = null,
     var createdAt: Instant? = null,
     var updatedAt: Instant? = null,

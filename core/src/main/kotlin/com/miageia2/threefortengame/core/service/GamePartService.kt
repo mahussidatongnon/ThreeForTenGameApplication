@@ -80,12 +80,14 @@ class GamePartService(
         var gameState = GameState(
             gamePartId = gamePart.id,
             turn = 0,
+            currentPlayerIndex = 0,
             currentPlayerId = gamePart.player1Id,
             boardState = Array(gamePart.nbCasesCote) {
                 arrayOfNulls<com.miageia2.threefortengame.core.entity.utils.BoardCell?>(gamePart.nbCasesCote)
             },
             createdAt = Instant.now(),
             updatedAt = Instant.now(),
+            scores = hashMapOf(Pair(0, 0), Pair(0, 0))
         )
 
         gameState = gameStateRepository.save(gameState)

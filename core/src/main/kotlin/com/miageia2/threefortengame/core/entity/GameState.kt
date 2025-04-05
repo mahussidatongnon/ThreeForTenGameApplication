@@ -18,13 +18,13 @@ class GameState (
     var id: String? = null,
     var gamePartId: String? = null, // Référence vers la partie
     var turn: Int = 1, // Numéro du tour
-    var currentPlayerId: String? = null, // Joueur dont c'est le tour
+    var currentPlayerIndex: Int = 0, // Joueur dont c'est le tour, 0 == joueur1, 1 == joueur2
+    var currentPlayerId: String? = null,
     var boardState: Array<Array<BoardCell?>>? = null, // Plateau sous forme de tableau 2D
-    var lastMove: com.miageia2.threefortengame.core.entity.PlayerTurn? = null, // Dernier mouvement
+    var lastMove: PlayerTurn? = null, // Dernier mouvement
     var isFinished: Boolean = false, // Indique si la partie est terminée
-    var winnerId: String? = null, // Joueur gagnant (null si partie en cours)
     var createdAt: Instant? = null, // Date/heure de l'état
     var updatedAt: Instant? = null,
-    var scores: HashMap<String, Int> = hashMapOf(),
+    var scores: HashMap<Int, Int> = hashMapOf(),
 )
 

@@ -1,16 +1,48 @@
-services:
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: rabbitmq_stomp
-    ports:
-      - "5672:5672"   # Port AMQP
-      - "15672:15672" # Port Management Web
-      - "61613:61613" # Port STOMP
-    environment:
-      RABBITMQ_DEFAULT_USER: admin
-      RABBITMQ_DEFAULT_PASS: admin
-    volumes:
-      - ./.docker/rabbitmq_enabled_plugins:/etc/rabbitmq/enabled_plugins
-      - ./.docker/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
-#      - ./.docker/rabbitmq_scripts:/etc/rabbitmq/scripts  # Monter un répertoire local pour les scripts d'initialisation
+networks:
+  game_network:
+    driver: bridge
 
+services:
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    networks:
+      - game_network
+
+  core:
+    build:
+      context: .
+      dockerfile: core/Dockerfile
+    depends_on:
+      mongo:
+        condition: service_started
+    ports:
+      - "${CORE_PORT}:8080"
+    networks:
+      - game_network
+    environment:
+      - MONGO_USERNAME=${MONGO_USERNAME}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - MONGO_HOST=mongo:27017
+      - MONGO_NETWORK=threefortengame_game_network
+      - MONGO_DATABASE_NAME=${MONGO_DATABASE_NAME}
+
+  aiplayer:
+    build:
+      context: .
+      dockerfile: aiplayer/Dockerfile
+    depends_on:
+      mongo:
+        condition: service_started
+      core:
+        condition: service_started
+    ports:
+      - "${AIPLAYER_PORT}:8080"
+    networks:
+      - game_network
+    environment:
+      - CORE_HOST=core:8080

@@ -15,8 +15,8 @@ class GameController(private val gameClient: GameClient) {
     fun training(): ResponseEntity<Unit> {
         val secretCode = "123456"
         var gamePart = gameClient.createGame(GamePartCreateDTO(
-            player1Username = AiPlayerType.RANDOM.name,
-            player2Username = AiPlayerType.RANDOM.name,
+            player1Username = AiPlayerType.RANDOM_AI.name,
+            player2Username = AiPlayerType.RANDOM_AI.name,
             secretCode = secretCode,
             nbCasesCote = 7
         ))

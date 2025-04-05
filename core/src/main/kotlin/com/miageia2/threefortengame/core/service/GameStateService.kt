@@ -42,7 +42,9 @@ class GameStateService(
         if (!isInsideBoard(coordinates, gameState.boardState!!))
             throw IllegalArgumentException("coordinates must be between 0 and ${gameState.boardState!!.size - 1}")
 
-        if(player.id!=gameState.currentPlayerId)
+        val _currentPlayerId = if(gameState.currentPlayerIndex == 0) { gamePart.player1Id } else { gamePart.player2Id }
+
+        if(player.id!=_currentPlayerId)
             throw IllegalArgumentException("This is not your turn to play")
 
         // Vérifier si cette cas est toujours vide
@@ -54,23 +56,26 @@ class GameStateService(
 
 
         gameState.apply {
-            currentPlayerId = if(player.id == gamePart.player1Id) gamePart.player2Id else gamePart.player1Id
+            val nextPlayerIndex = (currentPlayerIndex + 1) % 2
+            currentPlayerIndex = nextPlayerIndex
+            currentPlayerId = if (nextPlayerIndex == 0) gamePart.player1Id else gamePart.player2Id
             updatedAt = Instant.now()
-            lastMove = com.miageia2.threefortengame.core.entity.PlayerTurn(
+            lastMove = PlayerTurn(
                 turn,
                 point = Point(coordinates.x, coordinates.y, player.id),
                 coinValue = coinValue,
                 score = pointsGagnes,
                 wonPoints = wonPoints,
                 gameStateId = id!!,
+                createdAt = Instant.now(),
             )
             turn ++
             isFinished = if (turn.compareTo(gamePart.nbCasesCote.toFloat().pow(2)) == 0) true else false
 
             // Mise à jour du score du joueur en s'assurant qu'il existe déjà dans la HashMap
-            scores[player.id!!] = scores.getOrDefault(player.id, 0) + pointsGagnes
+            scores[currentPlayerIndex] = scores.getOrDefault(currentPlayerIndex, 0) + pointsGagnes
 
-            winnerId = if(isFinished) scores.maxByOrNull { it.value }?.key else null
+            gamePart.winnerIndex = if(isFinished) scores.maxByOrNull { it.value }?.key else null
 
             boardState!![coordinates.x][coordinates.y] = BoardCell(
                 value = coinValue,
@@ -86,6 +91,7 @@ class GameStateService(
                 }
             }
         }
+
 
         if (gameState.isFinished)
             gamePart.status = GamePartStatus.FINISHED

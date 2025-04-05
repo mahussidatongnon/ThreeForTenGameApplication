@@ -6,6 +6,7 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.miageia2.threefortengame.common.dto.aiplayer.RegisterGameDTO
 import com.miageia2.threefortengame.common.dto.core.GamePartDTO
 import jakarta.annotation.PostConstruct
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.messaging.converter.StringMessageConverter
 import org.springframework.messaging.simp.stomp.StompFrameHandler
 import org.springframework.messaging.simp.stomp.StompHeaders
@@ -28,6 +29,9 @@ class WebSocketService {
     val stompSession: StompSession
         get() = _stompSession
 
+    @Value("\${core.url}")
+    private lateinit var CoreUrl: String
+
     @PostConstruct
     fun connect() {
         val webSocketClient = StandardWebSocketClient()
@@ -35,7 +39,7 @@ class WebSocketService {
         stompClient.messageConverter = StringMessageConverter()
 
         val future: CompletableFuture<StompSession> = stompClient.connectAsync(
-            "ws://localhost:8080/ws-game", object : StompSessionHandlerAdapter() {
+            "ws://$CoreUrl/ws-game", object : StompSessionHandlerAdapter() {
                 override fun afterConnected(session: StompSession, connectedHeaders: StompHeaders) {
                     println("✅ IA connectée au WebSocket !")
                     _stompSession = session
