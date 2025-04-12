@@ -6,6 +6,7 @@ import com.miageia2.threefortengame.common.dto.core.GamePartJoinDTO
 import com.miageia2.threefortengame.core.entity.GamePart
 import com.miageia2.threefortengame.core.entity.GameState
 import com.miageia2.threefortengame.common.utils.core.GamePartStatus
+import com.miageia2.threefortengame.core.entity.utils.BoardCell
 import com.miageia2.threefortengame.core.repository.GameStateRepository
 import com.miageia2.threefortengame.core.repository.GamePartRepository
 import com.miageia2.threefortengame.core.repository.PlayerRepository
@@ -83,7 +84,7 @@ class GamePartService(
             currentPlayerIndex = 0,
             currentPlayerId = gamePart.player1Id,
             boardState = Array(gamePart.nbCasesCote) {
-                arrayOfNulls<com.miageia2.threefortengame.core.entity.utils.BoardCell?>(gamePart.nbCasesCote)
+                arrayOfNulls<BoardCell?>(gamePart.nbCasesCote)
             },
             createdAt = Instant.now(),
             updatedAt = Instant.now(),
