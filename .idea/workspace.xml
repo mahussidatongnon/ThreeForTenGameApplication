@@ -4,23 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68067a91-00f0-436c-bc63-5ae891630bac" name="Changes" comment="random ai playing well">
-      <change afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/agent/Agent.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/agent/MDP.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/agent/QLearningAgent.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qValues/.gitignore" afterDir="false" />
+    <list default="true" id="68067a91-00f0-436c-bc63-5ae891630bac" name="Changes" comment="agent learning qValues">
+      <change afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/training/main.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/controller/GameController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/controller/GameController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/GameService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/GameService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/service/GamePartService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/service/GamePartService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/WebSocketService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/WebSocketService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/common/dto/core/GamePartDTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/common/dto/core/GamePartDTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/controller/AuthController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/controller/AuthController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/controller/GameController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/controller/GameController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/controller/PlayerController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/controller/PlayerController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/repository/GamePartRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/repository/GamePartRepository.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +56,24 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="ThreeForTengame" type="f1a62948:ProjectNode" />
+                <item name="common" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ThreeForTengame" type="f1a62948:ProjectNode" />
+                <item name="common" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ThreeForTengame" type="f1a62948:ProjectNode" />
+                <item name="common" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ThreeForTengame" type="f1a62948:ProjectNode" />
                 <item name="core" type="2d1252cf:ModuleNode" />
               </path>
               <path>
@@ -94,6 +105,7 @@
         <option value="Kotlin Data Class" />
         <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Jupyter Notebook" />
       </list>
     </option>
   </component>
@@ -144,70 +156,70 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.core/Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml.core: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml.mongo: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml.rabbitmq: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Gradle./Users/mahussidatongnon/Documents/GitHub/M2_MIAGE_NICE/IA_Societe/ThreeForTengame/aiplayer [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build ThreeForTengame.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build aiplayer.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Load Gradle Dependencies.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame [:org.example.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame [buildDependents].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame [classes].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame [compileJava].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame [jar].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame [prepareKotlinBuildScriptModel].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame:aiplayer [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame:common [buildDependents].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame:common [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame:common [classes].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame:common [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame:common [jar].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame:common [kotlinSourcesJar].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame:core [bootJar].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame:core [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ThreeForTengame:core [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.aiplayer [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.aiplayer [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Makefile Target.docker-compose-up.executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.AiplayerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.CoreApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ThreeForTengameApplication (1).executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ThreeForTengameApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ThreeForTengameApplicationKt.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/mahussidatongnon/Documents/GitHub/M2_MIAGE_NICE/IA_Societe/ThreeForTengame/core&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/mahussidatongnon/Documents/GitHub/M2_MIAGE_NICE/IA_Societe/ThreeForTengame/core/src/main/kotlin/Main.kt&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.345977&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.core/Dockerfile.executor": "Run",
+    "Docker.docker-compose.yml.core: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.mongo: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.rabbitmq: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Gradle./Users/mahussidatongnon/Documents/GitHub/M2_MIAGE_NICE/IA_Societe/ThreeForTengame/aiplayer [build].executor": "Run",
+    "Gradle.Build ThreeForTengame.executor": "Run",
+    "Gradle.Build aiplayer.executor": "Run",
+    "Gradle.Load Gradle Dependencies.executor": "Run",
+    "Gradle.ThreeForTengame [:org.example.Main.main()].executor": "Run",
+    "Gradle.ThreeForTengame [buildDependents].executor": "Run",
+    "Gradle.ThreeForTengame [build].executor": "Run",
+    "Gradle.ThreeForTengame [classes].executor": "Run",
+    "Gradle.ThreeForTengame [clean].executor": "Run",
+    "Gradle.ThreeForTengame [compileJava].executor": "Run",
+    "Gradle.ThreeForTengame [jar].executor": "Run",
+    "Gradle.ThreeForTengame [prepareKotlinBuildScriptModel].executor": "Run",
+    "Gradle.ThreeForTengame:aiplayer [clean].executor": "Run",
+    "Gradle.ThreeForTengame:common [buildDependents].executor": "Run",
+    "Gradle.ThreeForTengame:common [build].executor": "Debug",
+    "Gradle.ThreeForTengame:common [classes].executor": "Run",
+    "Gradle.ThreeForTengame:common [clean].executor": "Run",
+    "Gradle.ThreeForTengame:common [jar].executor": "Run",
+    "Gradle.ThreeForTengame:common [kotlinSourcesJar].executor": "Run",
+    "Gradle.ThreeForTengame:core [bootJar].executor": "Run",
+    "Gradle.ThreeForTengame:core [build].executor": "Run",
+    "Gradle.ThreeForTengame:core [clean].executor": "Run",
+    "Gradle.aiplayer [build].executor": "Run",
+    "Gradle.aiplayer [clean].executor": "Run",
+    "Makefile Target.docker-compose-up.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.AiplayerApplication.executor": "Run",
+    "Spring Boot.CoreApplication.executor": "Run",
+    "Spring Boot.ThreeForTengameApplication (1).executor": "Run",
+    "Spring Boot.ThreeForTengameApplication.executor": "Run",
+    "Spring Boot.ThreeForTengameApplicationKt.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/mahussidatongnon/Documents/GitHub/M2_MIAGE_NICE/IA_Societe/ThreeForTengame/core",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/Users/mahussidatongnon/Documents/GitHub/M2_MIAGE_NICE/IA_Societe/ThreeForTengame/core/src/main/kotlin/Main.kt",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.345977",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -249,11 +261,11 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AiplayerApplication">
-    <configuration name="ThreeForTengame:core [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.ThreeForTengame:common [build]">
+    <configuration name="ThreeForTengame:common [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/core" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/common" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -261,7 +273,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="clean" />
+            <option value="build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -349,18 +361,18 @@
     <list>
       <item itemvalue="Docker.core/Dockerfile" />
       <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-      <item itemvalue="Gradle.ThreeForTengame:core [clean]" />
+      <item itemvalue="Gradle.ThreeForTengame:common [build]" />
       <item itemvalue="Makefile Target.docker-compose-up" />
       <item itemvalue="Spring Boot.CoreApplication" />
       <item itemvalue="Spring Boot.AiplayerApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ThreeForTengame:common [build]" />
         <item itemvalue="Spring Boot.AiplayerApplication" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Makefile Target.docker-compose-up" />
         <item itemvalue="Docker.core/Dockerfile" />
-        <item itemvalue="Gradle.ThreeForTengame:core [clean]" />
       </list>
     </recent_temporary>
   </component>
@@ -417,7 +429,13 @@
       <workItem from="1743670639440" duration="4764000" />
       <workItem from="1743675420866" duration="8280000" />
       <workItem from="1743846297053" duration="25851000" />
-      <workItem from="1744478416991" duration="7550000" />
+      <workItem from="1744478416991" duration="8950000" />
+      <workItem from="1745088621000" duration="3549000" />
+      <workItem from="1745347058533" duration="1492000" />
+      <workItem from="1745353169650" duration="6202000" />
+      <workItem from="1745443522793" duration="207000" />
+      <workItem from="1745443753903" duration="8520000" />
+      <workItem from="1745694857523" duration="8463000" />
     </task>
     <task id="LOCAL-00001" summary="initiate project">
       <option name="closed" value="true" />
@@ -555,7 +573,23 @@
       <option name="project" value="LOCAL" />
       <updated>1743854737322</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="agent learning qValues">
+      <option name="closed" value="true" />
+      <created>1744494438643</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1744494438644</updated>
+    </task>
+    <task id="LOCAL-00019" summary="agent learning qValues">
+      <option name="closed" value="true" />
+      <created>1744494525187</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1744494525187</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -601,7 +635,8 @@
     <MESSAGE value="add gitignore" />
     <MESSAGE value="ai played successfully" />
     <MESSAGE value="random ai playing well" />
-    <option name="LAST_COMMIT_MESSAGE" value="random ai playing well" />
+    <MESSAGE value="agent learning qValues" />
+    <option name="LAST_COMMIT_MESSAGE" value="agent learning qValues" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
