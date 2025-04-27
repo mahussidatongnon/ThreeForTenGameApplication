@@ -55,4 +55,5 @@ class GameService(private val gameClient: GameClient) {
         } else
             println("No legal actions found")
     }
+
 }

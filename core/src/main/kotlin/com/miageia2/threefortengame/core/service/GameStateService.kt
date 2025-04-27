@@ -56,9 +56,7 @@ class GameStateService(
 
 
         gameState.apply {
-            val nextPlayerIndex = (currentPlayerIndex + 1) % 2
-            currentPlayerIndex = nextPlayerIndex
-            currentPlayerId = if (nextPlayerIndex == 0) gamePart.player1Id else gamePart.player2Id
+
             updatedAt = Instant.now()
             lastMove = PlayerTurn(
                 turn,
@@ -90,6 +88,11 @@ class GameStateService(
                     }
                 }
             }
+
+            // Go to nextPlayer after updating of scores
+            val nextPlayerIndex = (currentPlayerIndex + 1) % 2
+            currentPlayerIndex = nextPlayerIndex
+            currentPlayerId = if (nextPlayerIndex == 0) gamePart.player1Id else gamePart.player2Id
         }
 
 
