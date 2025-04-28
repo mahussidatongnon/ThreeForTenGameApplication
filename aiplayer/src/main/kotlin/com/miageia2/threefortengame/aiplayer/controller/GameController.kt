@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController
 import com.miageia2.threefortengame.aiplayer.proxy.GameClient
 import com.miageia2.threefortengame.aiplayer.service.agent.Agent
 import com.miageia2.threefortengame.aiplayer.service.agent.QLearningAgent
+import com.miageia2.threefortengame.aiplayer.service.agent.toState
 import com.miageia2.threefortengame.common.AiPlayerType
 import com.miageia2.threefortengame.common.dto.core.BoardCellDTO
 import com.miageia2.threefortengame.common.dto.core.GamePartCreateDTO
@@ -38,7 +39,7 @@ class GameController(private val gameClient: GameClient) {
             arrayOfNulls<BoardCellDTO?>(nbCasesCote)
         }
         val agent = QLearningAgent(
-            initialState,
+            initialState.toState(),
             alpha=trainingBody.alpha,
             epsilon=trainingBody.epsilon,
             gamma=trainingBody.gamma)

@@ -43,7 +43,7 @@ class SubscribeGameStateService(private val webSocketService: WebSocketService, 
                         )
                         if (subscriptionPlayerInfo != null) {
                             println("Valide subscriptionPlayerInfo")
-                            gameService.play(gameStateDTO)
+                            gameService.play(gameStateDTO, subscriptionPlayerInfo.aiPlayerType)
                         } else
                             println("subscriptionPlayerInfo is null")
                     } else {

@@ -7,7 +7,30 @@ import java.io.File
 import java.time.Instant
 
 
-typealias State = Array<Array<BoardCellDTO?>>
+data class State(val board: Array<Array<BoardCellDTO?>>) {
+
+    val size: Int
+        get() = board.size
+    override fun hashCode(): Int {
+        return board.contentDeepHashCode()  // Utilisation de contentDeepHashCode pour les tableaux multidimensionnels
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is State) return false
+        return board.contentDeepEquals(other.board)  // Comparaison de contenu pour les tableaux multidimensionnels
+    }
+}
+
+fun State.toArray(): Array<Array<BoardCellDTO?>> {
+    return board // Pas besoin de conversion, `board` est déjà un Array<Array<BoardCellDTO?>>
+}
+
+fun Array<Array<BoardCellDTO?>>.toState(): State {
+    return State(this)  // Crée un objet State avec le tableau multidimensionnel
+}
+
+
 
 data class Action(
     val coordinates: PointDTO,

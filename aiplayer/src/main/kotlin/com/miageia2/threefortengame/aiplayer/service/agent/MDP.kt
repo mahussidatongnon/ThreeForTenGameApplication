@@ -21,17 +21,17 @@ object MDP {
     }
 
     fun deepCopy(state: State): State {
-        return Array(state.size) { i ->
-            Array(state[i].size) { j ->
-                state[i][j]?.copy() // Utilise la méthode `copy()` si `BoardCellDTO` est un data class
+        return State(Array(state.size) { i ->
+            Array(state.board[i].size) { j ->
+                state.board[i][j]?.copy() // Utilise la méthode `copy()` si `BoardCellDTO` est un data class
             }
-        }
+        })
     }
 
     fun simulateNextState(state: State, action: Action): State {
         val newState = deepCopy(state)
         val (x, y) = action.coordinates
-        newState[x][y] = BoardCellDTO(value = action.coinValue)
+        newState.board[x][y] = BoardCellDTO(value = action.coinValue)
         return newState
     }
 
@@ -97,7 +97,7 @@ object MDP {
 
     fun getLegalActions(state: State): List<Action> {
         val legalActions: MutableList<Action> = ArrayList()
-        state.forEachIndexed { x, rowBoardCells ->
+        state.board.forEachIndexed { x, rowBoardCells ->
             rowBoardCells.withIndex()
                 .filter { it.value == null }
                 .forEach { item ->
@@ -134,8 +134,8 @@ object MDP {
             return false
         }
 
-        val cell1 = state[point1.x][point1.y] ?: return false
-        val cell2 = state[point2.x][point2.y] ?: return false
+        val cell1 = state.board[point1.x][point1.y] ?: return false
+        val cell2 = state.board[point2.x][point2.y] ?: return false
 
         // Vérifie si cette case a déjà été utilisée dans cette direction ar les 2 autres cellules
         if ((direction in cell1.wonCasesDirections) || (direction in cell2.wonCasesDirections)) {
@@ -163,8 +163,8 @@ object MDP {
             return false
         }
 
-        val cell1 = state[point1.x][point1.y] ?: return false
-        val cell2 = state[point2.x][point2.y] ?: return false
+        val cell1 = state.board[point1.x][point1.y] ?: return false
+        val cell2 = state.board[point2.x][point2.y] ?: return false
 
         // Vérifie si cette case a déjà été utilisée dans cette direction ar les 2 autres cellules
         if ((direction in cell1.wonCasesDirections) || (direction in cell2.wonCasesDirections)) {

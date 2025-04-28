@@ -10,6 +10,7 @@ import com.miageia2.threefortengame.common.dto.core.PlayGameDTO
 import com.miageia2.threefortengame.common.dto.core.PointDTO
 import org.springframework.stereotype.Service
 import com.miageia2.threefortengame.aiplayer.service.agent.Action
+import com.miageia2.threefortengame.aiplayer.service.agent.toState
 
 @Service
 class GameService(private val gameClient: GameClient) {
@@ -23,6 +24,7 @@ class GameService(private val gameClient: GameClient) {
             playerId = gameStateDTO.currentPlayerId!!)
         val action: Action?
 
+        println("game: ${gameStateDTO.gamePartId} AI: $aiPlayerType")
         when (aiPlayerType) {
             AiPlayerType.RANDOM_AI -> {
                 val legalActions: Array<PointDTO> = gameClient.getLegalActions(gameStateDTO.gamePartId!!)
@@ -35,9 +37,10 @@ class GameService(private val gameClient: GameClient) {
                 action = Action(coordinates,3)
             }
             AiPlayerType.ACTIF_AI -> {
-                val agent = QLearningAgent(startState = gameStateDTO.boardState!!)
+                val agent = QLearningAgent(startState = gameStateDTO.boardState!!.toState())
                 agent.loadQValues(filePath = "qValues/${agent.startState.size}SquareCases/Best.json")
-                action = agent.getPolicy(gameStateDTO.boardState!!)
+                action = agent.getPolicy(gameStateDTO.boardState!!.toState())
+                println("agent: $agent, action: $action")
             }
         }
 //        val legalActions: Array<PointDTO> = gameClient.getLegalActions(gameStateDTO.gamePartId!!)

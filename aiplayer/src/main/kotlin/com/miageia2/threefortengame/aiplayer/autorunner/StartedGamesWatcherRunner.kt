@@ -40,7 +40,7 @@ class StartedGamesWatcherRunner(val gameClient: GameClient, val playerClient: Pl
                     val gameState = gameClient.getState(game.id)
                     if (gameState.currentPlayerId == player.id) {
                         println("C'est mon tour de jouer")
-                        gameService.play(gameState)
+                        gameService.play(gameState, AiPlayerType.valueOf(it.name))
                     } else
                         println("pas mon tour")
                 }
