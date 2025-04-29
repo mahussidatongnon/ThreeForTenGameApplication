@@ -36,8 +36,8 @@ class GameStateService(
         val gameState: GameState = gameStateRepository.findById(gamePart.gameStateId!!)
             .orElseThrow { IllegalArgumentException("GameState not found") }!!
 
-        if (!(coinValue in 3 until 9))
-            throw IllegalArgumentException("CoinValue must be between 3 and 8")
+        if (!(coinValue in 1 until 9))
+            throw IllegalArgumentException("CoinValue must be between 1 and 8")
 
         if (!isInsideBoard(coordinates, gameState.boardState!!))
             throw IllegalArgumentException("coordinates must be between 0 and ${gameState.boardState!!.size - 1}")
@@ -108,8 +108,8 @@ class GameStateService(
     private fun countWinningGroups(gameState: GameState, coordinates: PointDTO, coinValue: Int, player: Player):
             Pair<Int, EnumMap<WinningDirection, MutableSet<Point>>> {
         val directions = listOf(
-            Pair(1, 0) to WinningDirection.HORIZONTAL,
-            Pair(0, 1) to WinningDirection.VERTICAL,
+            Pair(1, 0) to WinningDirection.VERTICAL,
+            Pair(0, 1) to WinningDirection.HORIZONTAL,
             Pair(1, 1) to WinningDirection.DOWN_DIAGONAL,
             Pair(1, -1) to WinningDirection.UP_DIAGONAL
         )

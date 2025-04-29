@@ -17,4 +17,4 @@ COPY --from=builder /app/aiplayer/build/libs/*.jar app.jar
 # Copie du JAR généré depuis le builder (en supposant une application Spring Boot ou similaire)
 EXPOSE 8080
 
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-Xmx4G", "-jar", "app.jar"]

@@ -30,6 +30,7 @@ class QLearningAgent(override val startState: State, override val alpha: Double 
     fun computeValueFromQValues(state: State): Double {
         val legalActions = mdp.getLegalActions(state)
         if (legalActions.isEmpty()) return 0.0
+
         return legalActions.maxOf { action -> getQValue(state, action)  }
     }
 
@@ -44,32 +45,32 @@ class QLearningAgent(override val startState: State, override val alpha: Double 
             println("LegalAction is empty")
             return null
         }
-        for (action in legalActions) {
-            val qValue = getQValue(state, action)
-//            println("Action: $action, QValue: $qValue")
-        }
-        return legalActions.maxBy { action -> getQValue(state, action) }
+        val maxQ = legalActions.maxOf { action -> getQValue(state, action) }
+        val bestActions = legalActions.filter { action -> getQValue(state, action) == maxQ }
+        return bestActions.randomOrNull()
     }
 
     fun liveGetQValue(state: State, action: Action): Double {
 //        println("Key: ${Pair(state, action)}")
 //        println("is qvalue exist?: ${_qValues[Pair(state, action)]}")
+//        return _qValues[Pair(state, action)] ?: 0.0
         val qValue = _qValues[Pair(state, action)] ?: 0.0
         val reward = this.mdp.getReward(state, action)
         return qValue + reward
     }
+
     fun liveComputeActionFromQValues(state: State): Action? {
         val legalActions = mdp.getLegalActions(state)
         if (legalActions.isEmpty()) {
             println("LegalAction is empty")
             return null
         }
-        for (action in legalActions) {
-            val qValue = getQValue(state, action)
-//            println("Action: $action, QValue: $qValue")
-        }
-        return legalActions.maxBy { action -> liveGetQValue(state, action) }
+
+        val maxQ = legalActions.maxOf { action -> liveGetQValue(state, action) }
+        val bestActions = legalActions.filter { action -> liveGetQValue(state, action) == maxQ }
+        return bestActions.randomOrNull()
     }
+
 
     override fun getAction(state: State): Action? {
         val legalActions = mdp.getLegalActions(state)
@@ -138,16 +139,13 @@ class QLearningAgent(override val startState: State, override val alpha: Double 
         }
     }
 
+    fun loadQValues(qValues: HashMap<Pair<State, Action>, Double>) {
+        _qValues = qValues
+    }
     fun loadQValues(filePath: String): HashMap<Pair<State, Action>, Double> {
         val mapper = jacksonObjectMapper()
-//        val qEntries: List<QEntry> = mapper.readValue(File(filePath))
 
         val qValues = HashMap<Pair<State, Action>, Double>()
-
-//        for (entry in qEntries) {
-//            val state = State(mapper.readValue(entry.state)) // re-décode le State
-//            qValues[Pair(state, entry.action)] = entry.qvalue
-//        }
 
         try {
             BufferedReader(FileReader(filePath)).use { reader ->
@@ -161,21 +159,7 @@ class QLearningAgent(override val startState: State, override val alpha: Double 
             println("Load QValues error: ${e.message}")
         }
 
-//        val randomEntry = qValues.entries.randomOrNull()
-//        if (randomEntry != null) {
-//            val (rState, rAction) = randomEntry.key
-//            val copyRState =  State(Array(rState.size) { i ->
-//                Array(rState.board[i].size) { j ->
-//                    rState.board[i][j]?.copy() // Utilise la méthode `copy()` si `BoardCellDTO` est un data class
-//                }
-//            })
-////            println("rState: $rState")
-////            println("copyRState: $copyRState")
-////            println("rState == copyRState: ${rState == copyRState}")
-////            println("rState === copyRState: ${rState === copyRState}")
-////            println("randomEntry == Pair(copyRState, rAction): ${randomEntry.key == Pair(copyRState, rAction)}")
-////            println("randomEntry === copyRState: ${randomEntry.key === Pair(copyRState, rAction)}")
-//        }
         return qValues
     }
+
 }

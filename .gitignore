@@ -40,3 +40,4 @@ out/
 .kotlin
 common/build
 qValues
+app/qValues

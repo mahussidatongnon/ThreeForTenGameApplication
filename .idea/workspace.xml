@@ -4,9 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68067a91-00f0-436c-bc63-5ae891630bac" name="Changes" comment="review logics">
+    <list default="true" id="68067a91-00f0-436c-bc63-5ae891630bac" name="Changes" comment="update Qlearning AI">
+      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aiplayer/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/agent/QValueStore.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qvaluefetcher/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qvaluefetcher/download_qvalues.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aiplayer/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/aiplayer/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/GameService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/GameService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/agent/QLearningAgent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/agent/QLearningAgent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/core/BoardCellDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/core/BoardCellDTO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/core/GamePartDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/core/GamePartDTO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab" beforeDir="false" afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream" afterDir="false" />
@@ -68,8 +78,12 @@
       <change beforePath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab_i" beforeDir="false" afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab_i" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/last-build.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin" beforeDir="false" afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/local-state/build-history.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/build/libs/common-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/common/build/libs/common-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/service/GameStateService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/com/miageia2/threefortengame/core/service/GameStateService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qValues/.gitignore" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,6 +122,24 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="ThreeForTengame" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ThreeForTengame" type="f1a62948:ProjectNode" />
+                <item name="aiplayer" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ThreeForTengame" type="f1a62948:ProjectNode" />
+                <item name="aiplayer" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ThreeForTengame" type="f1a62948:ProjectNode" />
+                <item name="aiplayer" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -160,8 +192,8 @@
         <option value="Kotlin Enum" />
         <option value="Kotlin Data Class" />
         <option value="Kotlin Interface" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Jupyter Notebook" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -217,6 +249,7 @@
     "Docker.core/Dockerfile.executor": "Run",
     "Docker.docker-compose.yml.core: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.mongo: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.qvaluefetcher: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.rabbitmq: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
@@ -261,7 +294,7 @@
     "Spring Boot.ThreeForTengameApplicationKt.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/mahussidatongnon/Documents/GitHub/M2_MIAGE_NICE/IA_Societe/ThreeForTengame/qValues/7SquareCases",
+    "last_opened_file_path": "/Users/mahussidatongnon/Documents/GitHub/M2_MIAGE_NICE/IA_Societe/ThreeForTengame/app/qValues",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -281,18 +314,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/qValues/7SquareCases" />
-      <recent name="$PROJECT_DIR$/core" />
-      <recent name="$PROJECT_DIR$/aiplayer" />
+      <recent name="$PROJECT_DIR$/app/qValues" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service" />
+      <recent name="$PROJECT_DIR$/core" />
+      <recent name="$PROJECT_DIR$/qValues/6SquareCases" />
+      <recent name="$PROJECT_DIR$/qValues/7SquareCases" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/agent" />
       <recent name="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/utils" />
       <recent name="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/core/.docker" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.miageia2.threefortengame.aiplayer.service.agent" />
@@ -318,7 +351,29 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.ThreeForTengame:common [build]">
+  <component name="RunManager" selected="Spring Boot.AiplayerApplication">
+    <configuration name="ThreeForTengame:aiplayer [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/aiplayer" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="ThreeForTengame:common [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -341,12 +396,6 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose-up" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
-      <makefile filename="$PROJECT_DIR$/Makefile" target="docker-compose-up" workingDirectory="" arguments="">
-        <envs />
-      </makefile>
-      <method v="2" />
-    </configuration>
     <configuration name="AiplayerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <option name="envFilePaths">
         <option value="$PROJECT_DIR$/aiplayer/.env.local" />
@@ -357,6 +406,7 @@
         <option name="environmentVariables" />
       </selectedOptions>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.miageia2.threefortengame.aiplayer.AiplayerApplication" />
+      <option name="VM_PARAMETERS" value="-Xmx6G" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.miageia2.threefortengame.aiplayer.*" />
@@ -399,37 +449,43 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="core/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
-      <deployment type="dockerfile">
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
         <settings>
-          <option name="sourceFilePath" value="core/Dockerfile" />
+          <option name="envFilePath" value="" />
+          <option name="sourceFilePath" value="docker-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yml.qvaluefetcher: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
+          <option name="services">
+            <list>
+              <option value="qvaluefetcher" />
+            </list>
+          </option>
           <option name="sourceFilePath" value="docker-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Docker.core/Dockerfile" />
+      <item itemvalue="Docker.docker-compose.yml.qvaluefetcher: Compose Deployment" />
       <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      <item itemvalue="Gradle.ThreeForTengame:aiplayer [clean]" />
       <item itemvalue="Gradle.ThreeForTengame:common [build]" />
-      <item itemvalue="Makefile Target.docker-compose-up" />
       <item itemvalue="Spring Boot.CoreApplication" />
       <item itemvalue="Spring Boot.AiplayerApplication" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.AiplayerApplication" />
-        <item itemvalue="Gradle.ThreeForTengame:common [build]" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-        <item itemvalue="Makefile Target.docker-compose-up" />
-        <item itemvalue="Docker.core/Dockerfile" />
+        <item itemvalue="Docker.docker-compose.yml.qvaluefetcher: Compose Deployment" />
+        <item itemvalue="Gradle.ThreeForTengame:aiplayer [clean]" />
+        <item itemvalue="Gradle.ThreeForTengame:common [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -492,7 +548,11 @@
       <workItem from="1745353169650" duration="6202000" />
       <workItem from="1745443522793" duration="207000" />
       <workItem from="1745443753903" duration="8520000" />
-      <workItem from="1745694857523" duration="16437000" />
+      <workItem from="1745694857523" duration="22599000" />
+      <workItem from="1745787291930" duration="409000" />
+      <workItem from="1745864648950" duration="18780000" />
+      <workItem from="1745942770158" duration="8940000" />
+      <workItem from="1745956239669" duration="5362000" />
     </task>
     <task id="LOCAL-00001" summary="initiate project">
       <option name="closed" value="true" />
@@ -654,7 +714,39 @@
       <option name="project" value="LOCAL" />
       <updated>1745712785153</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="update play system">
+      <option name="closed" value="true" />
+      <created>1745778219465</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1745778219466</updated>
+    </task>
+    <task id="LOCAL-00022" summary="fix scores errors">
+      <option name="closed" value="true" />
+      <created>1745779414115</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1745779414115</updated>
+    </task>
+    <task id="LOCAL-00023" summary="update Qlearning AI">
+      <option name="closed" value="true" />
+      <created>1745874875157</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1745874875157</updated>
+    </task>
+    <task id="LOCAL-00024" summary="update Qlearning AI">
+      <option name="closed" value="true" />
+      <created>1745912902060</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1745912902060</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -702,7 +794,10 @@
     <MESSAGE value="random ai playing well" />
     <MESSAGE value="agent learning qValues" />
     <MESSAGE value="review logics" />
-    <option name="LAST_COMMIT_MESSAGE" value="review logics" />
+    <MESSAGE value="update play system" />
+    <MESSAGE value="fix scores errors" />
+    <MESSAGE value="update Qlearning AI" />
+    <option name="LAST_COMMIT_MESSAGE" value="update Qlearning AI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

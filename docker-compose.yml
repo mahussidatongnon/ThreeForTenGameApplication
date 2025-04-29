@@ -2,6 +2,10 @@ networks:
   game_network:
     driver: bridge
 
+
+volumes:
+  qvalues-data:
+
 services:
   mongo:
     image: mongo:latest
@@ -40,9 +44,21 @@ services:
         condition: service_started
       core:
         condition: service_started
+      qvaluefetcher:
+        condition: service_completed_successfully
     ports:
       - "${AIPLAYER_PORT}:8080"
     networks:
       - game_network
     environment:
       - CORE_HOST=core:8080
+    volumes:
+      - qvalues-data:/app/qValues
+
+  qvaluefetcher:
+    build:
+      context: ./qvaluefetcher
+    volumes:
+      - qvalues-data:/qValues
+    networks:
+      - game_network
