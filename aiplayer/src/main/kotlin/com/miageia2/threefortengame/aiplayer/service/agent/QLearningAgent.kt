@@ -139,8 +139,12 @@ class QLearningAgent(override val startState: State, override val alpha: Double 
         }
     }
 
-    fun loadQValues(qValues: HashMap<Pair<State, Action>, Double>) {
-        _qValues = qValues
+    fun loadQValues(qValues: HashMap<Pair<State, Action>, Double>?) {
+        if (qValues != null) {
+            _qValues = qValues
+        } else {
+            _qValues = HashMap<Pair<State, Action>, Double>()
+        }
     }
     fun loadQValues(filePath: String): HashMap<Pair<State, Action>, Double> {
         val mapper = jacksonObjectMapper()

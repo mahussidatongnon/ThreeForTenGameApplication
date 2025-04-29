@@ -5,7 +5,8 @@ QVAL_DIR="/qValues/"
 BASE_URL="https://jeffdevtest44.s3.eu-west-3.amazonaws.com/ia_kotlin"
 
 # Liste des fichiers à télécharger
-FILES="5Best.jsonl 6Best.jsonl 7Best.jsonl"
+#FILES="5Best.jsonl 6Best.jsonl 7Best.jsonl"
+FILES="5Best.jsonl"
 
 mkdir -p "$QVAL_DIR"
 

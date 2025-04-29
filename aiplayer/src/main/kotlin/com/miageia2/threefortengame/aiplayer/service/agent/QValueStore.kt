@@ -35,7 +35,7 @@ class QValueStore {
                 println("✅ Q-values loaded for size $size (${qValues.size} entries)")
             } else {
                 println("⚠️ Q-values for size $size could not be loaded.")
-                qValuesMap[size] = HashMap()
+//                qValuesMap[size] = HashMap()
             }
         }
     }

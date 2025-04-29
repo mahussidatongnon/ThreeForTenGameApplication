@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68067a91-00f0-436c-bc63-5ae891630bac" name="Changes" comment="update AIAgent">
-      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aiplayer/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/aiplayer/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/GameService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/GameService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/agent/QLearningAgent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/agent/QLearningAgent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/agent/QValueStore.kt" beforeDir="false" afterPath="$PROJECT_DIR$/aiplayer/src/main/kotlin/com/miageia2/threefortengame/aiplayer/service/agent/QValueStore.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/core/BoardCellDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/core/BoardCellDTO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/core/GamePartDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/build/classes/kotlin/main/com/miageia2/threefortengame/common/dto/core/GamePartDTO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab" beforeDir="false" afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab" afterDir="false" />
@@ -73,7 +74,6 @@
       <change beforePath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin" beforeDir="false" afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/common/build/kotlin/compileKotlin/local-state/build-history.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/build/libs/common-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/common/build/libs/common-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/core/.dockerignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -542,7 +542,7 @@
       <workItem from="1745787291930" duration="409000" />
       <workItem from="1745864648950" duration="18780000" />
       <workItem from="1745942770158" duration="8940000" />
-      <workItem from="1745956239669" duration="6297000" />
+      <workItem from="1745956239669" duration="7470000" />
     </task>
     <task id="LOCAL-00001" summary="initiate project">
       <option name="closed" value="true" />
@@ -752,7 +752,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745961949298</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="update AIAgent">
+      <option name="closed" value="true" />
+      <created>1745962604336</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1745962604336</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
