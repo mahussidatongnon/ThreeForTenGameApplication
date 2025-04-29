@@ -38,7 +38,7 @@ class GameService(private val gameClient: GameClient) {
             }
             AiPlayerType.ACTIF_AI -> {
                 val agent = QLearningAgent(startState = gameStateDTO.boardState!!.toState())
-                agent.loadQValues(filePath = "qValues/${agent.startState.size}SquareCases/Best.json")
+                agent.loadQValues(filePath = "qValues/${agent.startState.size}SquareCases/Best.jsonl")
                 action = agent.getPolicy(gameStateDTO.boardState!!.toState())
                 println("agent: $agent, action: $action")
             }

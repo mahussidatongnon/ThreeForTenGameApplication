@@ -160,7 +160,7 @@ open class Agent(open val startState: State, open val alpha: Double = 1.0, open 
             val meanScore = totalScore / numEpisodes
             if (agent is QLearningAgent) {
                 agent.saveQValues("qValues/${agent.startState.size}SquareCases/${numEpisodes}Episodes_MeanScore" +
-                        "${meanScore}_Alpha${agent.alpha}_Epsilon${agent.epsilon}_Gamma${agent._discount}_Time${Instant.now()}.json", agent.qValues)
+                        "${meanScore}_Alpha${agent.alpha}_Epsilon${agent.epsilon}_Gamma${agent._discount}_Time${Instant.now()}.jsonl", agent.qValues)
             }
             println("Mean score = $meanScore")
         }

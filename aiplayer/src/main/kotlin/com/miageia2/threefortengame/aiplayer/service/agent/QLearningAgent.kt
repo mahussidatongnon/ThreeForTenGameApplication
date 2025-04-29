@@ -2,7 +2,7 @@ package com.miageia2.threefortengame.aiplayer.service.agent
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import java.io.File
+import java.io.*
 
 //data class QEntry(val state: String, val action: Action, val qValue: Double)
 data class QEntry(val state: String, val action: Action, val qvalue: Double)
@@ -113,11 +113,11 @@ class QLearningAgent(override val startState: State, override val alpha: Double 
     fun saveQValues(filePath: String, qValues: HashMap<Pair<State, Action>, Double>) {
         val mapper = jacksonObjectMapper()
 
-        val qEntries = qValues.map { (key, value) ->
-            val (state, action) = key
-            val stateJson = mapper.writeValueAsString(state.board) // Encodage de l'état
-            QEntry(stateJson, action, value)
-        }
+//        val qEntries = qValues.map { (key, value) ->
+//            val (state, action) = key
+//            val stateJson = mapper.writeValueAsString(state.board) // Encodage de l'état
+//            QEntry(stateJson, action, value)
+//        }
 
         val file = File(filePath)
         val parentDir = file.parentFile
@@ -126,34 +126,56 @@ class QLearningAgent(override val startState: State, override val alpha: Double 
             parentDir.mkdirs() // Crée tous les dossiers parents si nécessaire
         }
 
-        mapper.writeValue(file, qEntries)
+        BufferedWriter(FileWriter(file)).use { writer ->
+            for ((key, value) in qValues) {
+                val (state, action) = key
+                val stateJson = mapper.writeValueAsString(state.board) // Encode seulement le plateau
+                val entry = QEntry(stateJson, action, value)
+                val line = mapper.writeValueAsString(entry)
+                writer.write(line)
+                writer.newLine() // Une entrée JSON par ligne
+            }
+        }
     }
 
     fun loadQValues(filePath: String): HashMap<Pair<State, Action>, Double> {
         val mapper = jacksonObjectMapper()
-        val qEntries: List<QEntry> = mapper.readValue(File(filePath))
+//        val qEntries: List<QEntry> = mapper.readValue(File(filePath))
 
         val qValues = HashMap<Pair<State, Action>, Double>()
 
-        for (entry in qEntries) {
-            val state = State(mapper.readValue(entry.state)) // re-décode le State
-            qValues[Pair(state, entry.action)] = entry.qvalue
-        }
-        val randomEntry = qValues.entries.randomOrNull()
-        if (randomEntry != null) {
-            val (rState, rAction) = randomEntry.key
-            val copyRState =  State(Array(rState.size) { i ->
-                Array(rState.board[i].size) { j ->
-                    rState.board[i][j]?.copy() // Utilise la méthode `copy()` si `BoardCellDTO` est un data class
+//        for (entry in qEntries) {
+//            val state = State(mapper.readValue(entry.state)) // re-décode le State
+//            qValues[Pair(state, entry.action)] = entry.qvalue
+//        }
+
+        try {
+            BufferedReader(FileReader(filePath)).use { reader ->
+                reader.lineSequence().forEach { line ->
+                    val entry = mapper.readValue(line, QEntry::class.java)
+                    val state = State(mapper.readValue(entry.state))
+                    qValues[Pair(state, entry.action)] = entry.qvalue
                 }
-            })
-//            println("rState: $rState")
-//            println("copyRState: $copyRState")
-//            println("rState == copyRState: ${rState == copyRState}")
-//            println("rState === copyRState: ${rState === copyRState}")
-//            println("randomEntry == Pair(copyRState, rAction): ${randomEntry.key == Pair(copyRState, rAction)}")
-//            println("randomEntry === copyRState: ${randomEntry.key === Pair(copyRState, rAction)}")
+            }
+        } catch (e: Exception) {
+            println("Load QValues error: ${e.message}")
         }
+
+//        val randomEntry = qValues.entries.randomOrNull()
+//        if (randomEntry != null) {
+//            val (rState, rAction) = randomEntry.key
+//            val copyRState =  State(Array(rState.size) { i ->
+//                Array(rState.board[i].size) { j ->
+//                    rState.board[i][j]?.copy() // Utilise la méthode `copy()` si `BoardCellDTO` est un data class
+//                }
+//            })
+////            println("rState: $rState")
+////            println("copyRState: $copyRState")
+////            println("rState == copyRState: ${rState == copyRState}")
+////            println("rState === copyRState: ${rState === copyRState}")
+////            println("randomEntry == Pair(copyRState, rAction): ${randomEntry.key == Pair(copyRState, rAction)}")
+////            println("randomEntry === copyRState: ${randomEntry.key === Pair(copyRState, rAction)}")
+//        }
         return qValues
     }
 }
