@@ -48,7 +48,7 @@ class GameService(private val gameClient: GameClient, private val qValuesStore: 
                     PointDTO(size - 1, size - 1)
                 )
                 val coordinates = legalActions.maxBy { point ->
-                    corners.minOf { corner -> distance(point, corner) } // distance au coin le plus proche
+                    corners.maxOf { corner -> distance(point, corner) } // distance au coin le plus proche
                 }
                 action = Action(coordinates, (1..8).random())
             }
