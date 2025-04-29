@@ -63,7 +63,7 @@ class GameService(private val gameClient: GameClient, private val qValuesStore: 
                     size <= 5 -> qValuesStore.getQValues(5)
                     else -> qValuesStore.getQValues(size)
                 }
-                agent.loadQValues(qValues!!)
+                agent.loadQValues(qValues)
 //                println("filePath: $filePath")
 //                println("File exists: ${File(filePath).exists()}")
 //                println("File exists sans app: ${File(filePath).exists()}")
